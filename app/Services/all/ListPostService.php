@@ -25,7 +25,7 @@ class ListPostService extends ServiceProvider
                 'name_post', 'url_post',
                 'thumbnail_post',
                 'date_post',
-                'enable_post',
+                'enable_post'
                 )
             ->where('enable_post', '=', 1)
             ->orderBy('date_post', 'desc')
@@ -43,7 +43,7 @@ class ListPostService extends ServiceProvider
                 'content_post',
                 'thumbnail_post',
                 'date_post',
-                'enable_post',
+                'enable_post'
             )
             ->where('enable_post', '=', 1)
             ->where('url_post', 'like', $urlPost)

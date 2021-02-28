@@ -3,6 +3,14 @@
 
 // ========== ONE FOR ALL ==========
 
+// === CONNECT DATABASE ===
+
+// define('DB_HOST', '127.0.0.1');
+// define('DB_PORT', '3306');
+// define('DB_DATABASE', 'nvhai');
+// define('DB_USERNAME', 'root');
+// define('DB_PASSWORD', '');
+
 // === LANGUAGE ===
 
 // define('DEFAULT_LANGUAGE', 'en');
@@ -25,11 +33,11 @@ define('USERNAME_IS_NOT_EXIST', 'Tên đăng nhập sai');
 
 // ========== ADMIN ==========
 
-// === User's Role ===
+// === User's Type ===
 
-define('ROLE_MEMBER', 'member');
-define('ROLE_EDITOR', 'editor');
-define('ROLE_ADMIN', 'admin');
+define('TYPE_MEMBER', 'member');
+define('TYPE_EDITOR', 'editor');
+define('TYPE_ADMIN', 'admin');
 
 // === Paginate ===
 
@@ -42,6 +50,7 @@ define('WEBSITE_POST', 2);
 define('GAME_POST', 3);
 define('ANIME_POST', 4);
 define('THU_THUAT_IT_POST', 5);
+
 
 // === Hidden Post ===
 
@@ -69,7 +78,7 @@ define('PAGINATE_POST_DELETE', '30');
 define('PAGINATE_SITE_INDEX', '15');
 
 
-// ========== FOOD ==========
+// ========== NEWS ==========
 
 // === all ===
 

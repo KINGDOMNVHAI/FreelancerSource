@@ -1,0 +1,5 @@
+Đọc ghi chú này:
+
+Laravel 7.30.
+PHP Version 7.2
+Cách upload file khác với bản 5.4
