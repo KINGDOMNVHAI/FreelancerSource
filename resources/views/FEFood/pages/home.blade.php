@@ -642,7 +642,7 @@
                                                             <div class="elementor-element-custom_font_size elementor-element-custom_font_size_tablet elementor-element-custom_line_height elementor-element-custom_color elementor-element elementor-element-24cf7ed3 elementor-widget elementor-widget-text-editor" data-id="24cf7ed3" data-element_type="widget" data-widget_type="text-editor.default">
                                                                 <div class="elementor-widget-container">
                                                                     <div class="elementor-text-editor elementor-clearfix">
-                                                                        <h2>World’s Hottest Destinations for Vegans</h2>
+                                                                        <h2>{{$intro1->name_introduce}}</h2>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -665,14 +665,7 @@
                                                             <div class="elementor-element-custom_font_size elementor-element-custom_line_height elementor-element-custom_font_weight elementor-element-custom_color elementor-element elementor-element-71fe355 elementor-widget elementor-widget-text-editor" data-id="71fe355" data-element_type="widget" data-widget_type="text-editor.default">
                                                                 <div class="elementor-widget-container">
                                                                     <div class="elementor-text-editor elementor-clearfix">
-                                                                        <p><span>Utinam invidunt torquatos duo ei, ei brute aeterno invenire sed. Cum decore corrumpit et. At principes pertinacia vix, dicam laudem pertinacia ad pri. In brute mediocritatem sit, usu mucius everti no.</span></p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="elementor-element-custom_font_size elementor-element-custom_line_height elementor-element-custom_font_weight elementor-element-custom_color elementor-element elementor-element-35ae5a9f elementor-widget elementor-widget-text-editor" data-id="35ae5a9f" data-element_type="widget" data-widget_type="text-editor.default">
-                                                                <div class="elementor-widget-container">
-                                                                    <div class="elementor-text-editor elementor-clearfix">
-                                                                        <p>Mei in delenit denique dissentiunt, ne quodsi repudiare duo. Ne inermis volutpat vel. Mea in facer fabulas. Ex voluptaria intellegebat usu.</p>
+                                                                        {!! $intro1->content1_introduce !!}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -705,7 +698,7 @@
                                                             <div class="elementor-element-custom_font_size elementor-element-custom_line_height elementor-element-custom_font_weight elementor-element-custom_color elementor-element elementor-element-433b3c8c elementor-widget elementor-widget-text-editor" data-id="433b3c8c" data-element_type="widget" data-widget_type="text-editor.default">
                                                                 <div class="elementor-widget-container">
                                                                     <div class="elementor-text-editor elementor-clearfix">
-                                                                        <p>An qualisque constituam cum. Agam unum disputando ius et, mel id postea voluptua, et vel assum graece feugait. Eu mel alii vocibus. Id quidam de erroribus eam, qui aliquip patrioque accommodare ex, ex vix probo persius.</p>
+                                                                        {!! $intro1->content2_introduce !!}
                                                                     </div>
                                                                 </div>
                                                             </div>

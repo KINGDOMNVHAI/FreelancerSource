@@ -15,6 +15,6 @@ Route::get('/about','FEFood\HomeController@about')->name('about');
 
 Route::get('/contact','FEFood\HomeController@contact')->name('contact');
 
-Route::get('/blog','FEFood\PostController@blog')->name('blog');
+Route::get('/blog','FEFood\BlogController@blog')->name('blog');
 
-Route::get('/post/{urlPost}','FEFood\PostController@post')->name('post');
+Route::get('/post/{urlPost}','FEFood\BlogController@post')->name('post');

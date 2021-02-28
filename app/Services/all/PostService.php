@@ -1,5 +1,5 @@
 <?php
-namespace App\Services\backend;
+namespace App\Services\all;
 
 use App\Model\Post;
 use DB;
@@ -12,7 +12,7 @@ use Illuminate\Support\ServiceProvider;
 class PostService extends ServiceProvider
 {
     /**
-     * Bootstrap the application services.
+     * Services/all have all basic SQL of all tables in this project
      *
      * @return void
      */
@@ -45,7 +45,7 @@ class PostService extends ServiceProvider
         return $query;
     }
 
-    public function editpost($urlPost, $request)
+    public function edit($urlPost, $request)
     {
         $query = DB::table('posts')
             ->where('enable_post', '=', 1)
@@ -58,7 +58,7 @@ class PostService extends ServiceProvider
         return $query;
     }
 
-    public function deletepost($urlPost)
+    public function delete($urlPost)
     {
         $query = DB::table('posts')
             ->where('url_post', 'like', $urlPost)
@@ -68,4 +68,51 @@ class PostService extends ServiceProvider
 
         return $query;
     }
+
+    public function listPostHavePaginate($itemPerPage = 0, $limit = 0)
+    {
+        $query = DB::table('posts')
+                ->select(
+                    'id_post',
+                    'name_post', 'url_post',
+                    'thumbnail_post',
+                    'date_post',
+                    'enable_post'
+                    )
+                ->where('enable_post', '=', 1);
+
+        if ($itemPerPage > 0)
+        {
+            $query = $query->orderBy('date_post', 'desc')
+                ->paginate($itemPerPage);
+        }
+        else
+        {
+            $query = $query->orderBy('date_post', 'desc')
+                ->limit($limit)
+                ->get();
+        }
+
+        return $query;
+    }
+
+    public function detailPost($urlPost)
+    {
+        $query = DB::table('posts')
+            ->select(
+                'name_post', 'url_post',
+                'content_post',
+                'thumbnail_post',
+                'date_post',
+                'enable_post'
+            )
+            ->where('enable_post', '=', 1)
+            ->where('url_post', 'like', $urlPost)
+            ->orderBy('date_post', 'desc')
+            ->first();
+
+        return $query;
+    }
+
+
 }
