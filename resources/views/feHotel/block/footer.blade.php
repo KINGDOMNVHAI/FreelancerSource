@@ -1,0 +1,35 @@
+<script data-cfasync="false" src="{{asset('feHotel/cdn-cgi/scripts/cloudflare-static/email-decode.min.js')}}"></script>
+<script src="{{asset('feHotel/js/jquery.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="https://maps.google.com/maps/api/js?key=AIzaSyBjtXU1JtLBVn8-AA9ThYXvSl-ylfn5vEU" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/js/bootstrap.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/js/bootstrap-select.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/js/jquery.mmenu.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/js/jquery.inview.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/js/jquery.countdown.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/js/jquery.magnific-popup.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/js/owl.carousel.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/js/owl.carousel.thumbs.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/js/isotope.pkgd.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/js/imagesloaded.pkgd.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/js/masonry.pkgd.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/js/wow.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/js/countup.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/js/moment.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/js/daterangepicker.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/js/parallax.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/js/smoothscroll.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/js/instafeed.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/js/main.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+
+<script src="{{asset('feHotel/revolution/js/jquery.themepunch.tools.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/revolution/js/jquery.themepunch.revolution.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/revolution/js/extensions/revolution.extension.actions.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/revolution/js/extensions/revolution.extension.carousel.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/revolution/js/extensions/revolution.extension.kenburn.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/revolution/js/extensions/revolution.extension.layeranimation.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/revolution/js/extensions/revolution.extension.migration.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/revolution/js/extensions/revolution.extension.navigation.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/revolution/js/extensions/revolution.extension.parallax.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/revolution/js/extensions/revolution.extension.slideanims.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/revolution/js/extensions/revolution.extension.video.min.js')}}" type="5258d2bf9e2cce59edd09673-text/javascript"></script>
+<script src="{{asset('feHotel/cdn-cgi/scripts/cloudflare-static/rocket-loader.min.js')}}" data-cf-settings="5258d2bf9e2cce59edd09673-|49" defer=""></script>
