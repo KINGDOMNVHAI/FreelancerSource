@@ -33,10 +33,10 @@
                                 <thead class=" text-primary">
                                     <tr>
                                         <th class="text-center" style="width: 10%">ID sản phẩm</th>
-                                        <th class="text-center" style="width: 20%">Thumbnail</th>
+                                        <th style="width: 20%">Thumbnail</th>
                                         <th style="width: 20%">Tên sản phẩm</th>
                                         <th style="width: 20%">Giá</th>
-                                        <th class="th-description" style="width: 20%">Thuộc gian hàng</th>
+                                        <th class="th-description" style="width: 20%">Thể loại</th>
                                         <th style="width: 10%">Xóa</th>
                                     </tr>
                                 </thead>
@@ -44,7 +44,7 @@
                                     @foreach ($listProduct as $product)
                                     <tr>
                                         <td class="text-center">{{$product->id_product}}</td>
-                                        <td class="text-center">
+                                        <td>
                                             @if (strlen($product->thumbnail_product) <= 4)
                                             <div class="img-container">
                                                 <img src="{{ asset('admin/assets/img/image_placeholder.jpg') }}" alt="{{$product->name_product}}" width="80%">
@@ -57,7 +57,7 @@
                                         </td>
                                         <td>{{$product->name_product}}</td>
                                         <td>{{$product->price_product}}</td>
-                                        <td>{{$product->name_cat}}</td>
+                                        <td>{{$product->name_cat_product}}</td>
                                         <td class="td-actions">
                                             <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" onclick="window.location = '{{ route('product-insert-update', $product->id_product) }}'">
                                                 <i class="material-icons">edit</i>

@@ -20,8 +20,7 @@ class ProductService extends ServiceProvider
     {
         $result = [];
         $result = Products::join('discount', 'products.id_product', '=', 'discount.id_product')
-            ->join('product_category', 'products.id_product', '=', 'product_category.id_product')
-            ->join('categories', 'product_category.id_category', '=', 'categories.id_cat')
+            ->join('category_product', 'category_product.id_cat_product', '=', 'products.id_product')
             ->where('enable_product', true)
             ->where('url_product', $urlProduct)
             ->first();
@@ -93,18 +92,15 @@ class ProductService extends ServiceProvider
     public function searchProduct($filter)
     {
         // idCat là một mảng nên dùng IN (1,2,3,4,5)
-        $query = Products::join('product_category', 'products.id_product', '=', 'product_category.id_product')
-            ->join('categories', 'product_category.id_category', '=', 'categories.id_cat')
+        $query = Products::join('category_product', 'products.id_cat_product', '=', 'category_product.id_cat_product')
             ->select('products.*',
-                'product_category.*',
-                'categories.id_cat',
-                'categories.name_cat',
-                'categories.url_cat',
-                'categories.enable_cat',
+                'category_product.id_cat_product',
+                'category_product.name_cat_product',
+                'category_product.url_cat_product',
+                'category_product.enable_cat_product',
             )
             ->where('products.enable_product', ENABLE)
-            ->where('product_category.enable_product_category', ENABLE)
-            ->where('categories.enable_cat', ENABLE)
+            ->where('category_product.enable_cat_product', ENABLE)
         ;
 
         $keyword = null;
@@ -116,7 +112,7 @@ class ProductService extends ServiceProvider
         }
 
         if ($filter['idCat'][0] != null) {
-            $query = $query->whereIn('categories.id_cat', $filter['idCat'][0]);
+            $query = $query->whereIn('category_product.id_cat_product', $filter['idCat'][0]);
         }
         if ($filter['minPrice'] != null) {
             $query = $query->where('products.price_product', '>=', $filter['minPrice']);
@@ -173,14 +169,6 @@ class ProductService extends ServiceProvider
                 'id_cat_post'       => $datas['id_cat_post'],
                 'enable_product'    => $datas['enable'],
             ]);
-
-            if ($query != null) {
-                ProductCategory::create([
-                    'id_product'                => $query->id_product,
-                    'id_category'               => $datas['id_cat_post'],
-                    'enable_product_category'   => true,
-                ]);
-            }
         }
         else
         {

@@ -26,10 +26,9 @@ class CategoryService extends ServiceProvider
 
     public function listCategoryHaveCountProduct()
     {
-        return CategoryProduct::join('product_category', 'product_category.id_category', '=', 'category_product.id_cat_product')
-            ->join('products', 'products.id_product', '=', 'product_category.id_product')
-            ->select(DB::raw(
-                'count(products.id_product) as count_product,
+        return CategoryProduct::join('products', 'products.id_cat_product', '=', 'category_product.id_cat_product')
+            ->select(DB::raw('
+                count(products.id_product) as count_product,
                 category_product.id_cat_product,
                 category_product.name_cat_product,
                 category_product.url_cat_product,
