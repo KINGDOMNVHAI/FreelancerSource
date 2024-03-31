@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->text('present_product');
             $table->text('content_product');
             $table->integer('id_cat_product')->default(0);
-            $table->string('thumbnail_product');
+            $table->string('thumbnail_product')->nullable();
             $table->string('img_product_1')->nullable();
             $table->string('img_product_2')->nullable();
             $table->string('img_product_3')->nullable();

@@ -35,15 +35,15 @@ class HomeController extends Controller
     public function index()
     {
         $title = "Hiệu sách";
+        $categoryService = new CategoryService;
+        $productService = new ProductService;
+        $postService = new PostService;
 
-        $categoryService = new CategoryService();
         $listCategories = $categoryService->listCategory(true);
         $listCategoriesCount = $categoryService->listCategoryHaveCountProduct();
 
-        $productService = new ProductService();
         $listProduct = $productService->getProductPopular();
 
-        $postService = new PostService;
         $listPost = $postService->getListPost(config('limit.12'), true);
 
         return view('main.pages.home', [
@@ -58,8 +58,8 @@ class HomeController extends Controller
     public function contact()
     {
         $title = "Liên hệ " . config('type.main');
+        $categoryService = new CategoryService;
 
-        $categoryService = new CategoryService();
         $listCategories = $categoryService->listCategory(true);
 
         return view('main.pages.contact', [

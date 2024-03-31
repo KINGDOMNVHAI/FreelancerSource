@@ -18,7 +18,7 @@ class ProductController extends Controller
 
     public function listProductCategory($urlCat)
     {
-        $categoryService = new CategoryService();
+        $categoryService = new CategoryService;
         $listCategories = $categoryService->listCategory(true);
 
         $productService = new ProductService;
@@ -44,18 +44,19 @@ class ProductController extends Controller
 
     public function detailProduct($urlProduct)
     {
+        $categoryService = new CategoryService;
         $productService = new ProductService;
+
         $productInfo = $productService->getProduct($urlProduct);
         if ($productInfo == null) {
             return view('main.pages.404', [
             ]);
         }
-        $listProductRandom = $productService->getProductRandom(LIMIT_PRODUCT_IN_PRODUCT);
+        $listProductRandom = $productService->getProductRandom(config('limit.6'));
 
         // Get title from parent class
         $title = $productInfo['name_product'] . $this->title;
 
-        $categoryService = new CategoryService();
         $listCategories = $categoryService->listCategory(true);
 
         return view('main.pages.product', [

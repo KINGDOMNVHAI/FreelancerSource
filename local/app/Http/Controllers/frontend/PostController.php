@@ -18,14 +18,14 @@ class PostController extends Controller
 
     public function blog($idCat)
     {
-        $categoryService = new CategoryService();
+        $title = 'Bài viết' . config('type.main');
+        $categoryService = new CategoryService;
+
         $listCategories = $categoryService->listCategory(true);
 
         $postService = new PostService;
-        $listPost = $postService->getListPost(LIMIT_POST_BLOG, false);
-        $listRandomPost = $postService->getListRandomPost(LIMIT_POST_WIDGET, false);
-
-        $title = 'Bài viết' . config('type.main');
+        $listPost = $postService->getListPost(config('limit.6'), false);
+        $listRandomPost = $postService->getListRandomPost(config('limit.6'), false);
 
         return view('main.pages.blog', [
             'title' => $title ,
@@ -37,12 +37,14 @@ class PostController extends Controller
 
     public function post($urlPost)
     {
-        $categoryService = new CategoryService();
+        $categoryService = new CategoryService;
+        $postService = new PostService;
+
         $listCategories = $categoryService->listCategory(true);
 
-        $postService = new PostService;
         $post = $postService->detail($urlPost);
-        $listPost = $postService->getListRandomPost(LIMIT_POST_IN_POST, true);
+        $listPost = $postService->getListRandomPost(config('limit.6'), true);
+
         $title = $post->name_post . config('type.main');
 
         return view('main.pages.post', [

@@ -46,10 +46,9 @@ class CartController extends Controller
     public function checkout(Request $request)
     {
         $title = "Giỏ hàng" . config('type.main');
-        $categoryService = new CategoryService();
-        $listCategories = $categoryService->listCategory(true);
+        $categoryService = new CategoryService;
 
-        $productService = new ProductService;
+        $listCategories = $categoryService->listCategory(true);
 
         $arrayCart = $request->session()->get('arrayCart');
         $total = $request->session()->get('total');
@@ -57,7 +56,7 @@ class CartController extends Controller
             $total = 0;
             if ($arrayCart != null && count($arrayCart) > 0) {
                 foreach($arrayCart as $cart) {
-                    $total = $total + $cart['price_product'];
+                    $total = $total + $cart['price_product'] * $cart['quantity'];
                 }
             }
         }
@@ -73,20 +72,19 @@ class CartController extends Controller
     public function payment(Request $request)
     {
         $bookingService = new BookingService;
-        $cartService = new CartService;
         $emailService = new EmailService;
-        $productService = new ProductService;
 
         // Validate
         $datas = $request->all();
         $rules = [
-            // 'fullname'  => 'required',
+            'fullname'  => 'required',
             // 'phone'     => 'required',
             'email'     => 'required',
             // 'note'      => 'required',
         ];
 
         $messages = [
+            'fullname.required' => 'fullname is required',
             'email.required' => 'Email is required',
         ];
 
@@ -98,11 +96,14 @@ class CartController extends Controller
 
         $listProduct = $request->session()->get('arrayCart');
 
-        $bookingService->setBooking($listProduct);
+        $idBooking = $bookingService->setBooking($listProduct, $datas);
+        if ($idBooking == null) {
+            return \Redirect::back()->withInput()->withErrors("Không thể tạo đơn đặt hàng");
+        }
+        $request->session()->put('idBooking', $idBooking);
 
         $isSent = $emailService->sendEmailPayment($datas);
         if ($isSent) {
-
             $request->session()->forget(['arrayCart', 'total']);
             return redirect()->route('cart-completed', ['success' => config('email.sent')]);
         }
@@ -111,18 +112,23 @@ class CartController extends Controller
         return redirect()->route('cart-completed');
     }
 
-    public function completed()
+    public function completed(Request $request)
     {
         $title = "Completed" . config('type.main');
-        $categoryService = new CategoryService();
-        $productService = new ProductService;
+        $bookingService = new BookingService;
+        $categoryService = new CategoryService;
 
         $listCategories = $categoryService->listCategory(true);
+
+        $infoBooking = $bookingService->getBooking($request->session()->get('idBooking'));
+        $listProduct = $bookingService->getBookingDetail($request->session()->get('idBooking'));
 
         return view('main.pages.cart-completed', [
             'title' => $title,
             'success' => config('email.sent'),
             'listCategories' => $listCategories,
+            'infoBooking' => $infoBooking,
+            'listProduct' => $listProduct,
         ]);
     }
 }

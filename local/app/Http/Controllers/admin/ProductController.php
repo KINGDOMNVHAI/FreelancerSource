@@ -22,7 +22,9 @@ class ProductController extends Controller
         if (Auth::check())
         {
             $request = Request::capture();
-            $categoryService = new CategoryService();
+            $categoryService = new CategoryService;
+            $productService = new ProductService;
+
             $listCategories = $categoryService->listCategory(true);
             $listCategoriesCount = $categoryService->listCategoryHaveCountProduct();
 
@@ -37,7 +39,6 @@ class ProductController extends Controller
                 $filter['minPrice'] = 0;
             };
 
-            $productService = new ProductService();
             $listProduct = $productService->searchProduct($filter);
 
             return view('admin.pages.product-list', [
@@ -53,8 +54,9 @@ class ProductController extends Controller
 
     public function productInsertUpdate($id = null, Request $request)
     {
-        $productService = new ProductService();
         $categoryService = new CategoryService;
+        $productService = new ProductService;
+
         if (Auth::check())
         {
             $model = Products::find($id);

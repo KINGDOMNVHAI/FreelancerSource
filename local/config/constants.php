@@ -19,10 +19,12 @@ define('UNENABLE', false);
 
 // === Info ===
 
-define('ADDRESS', 'Nhà thuốc Khánh An. B14/2z/1z Ấp 2c vĩnh lộc B Bình Chánh TPHCM');
-define('PHONE', '0914634439');
-define('PHONE_TEXT', '0914 6344 39');
-define('EMAIL', 'anhnguyenthi181995@gmail.com');
+define('ADDRESS', '');
+define('PHONE', '');
+define('PHONE_TEXT', '');
+define('EMAIL', '');
+define('SHIPPING_PRICE', 10000);
+define('SHIPPING_PRICE_TEXT', '10.000');
 
 // === URL ===
 

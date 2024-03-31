@@ -18,12 +18,13 @@ class CategoryController extends Controller
 
     public function index($urlCat)
     {
-        $categoryService = new CategoryService();
+        $categoryService = new CategoryService;
+        $productService = new ProductService;
+
         $listCategories = $categoryService->listCategory(true);
         $listCategoriesCount = $categoryService->listCategoryHaveCountProduct();
         $detailCategory = $categoryService->getCategory($urlCat);
 
-        $productService = new ProductService();
         $productCategory = $productService->getProductByCategory($detailCategory->id_cat);
 
         $title = $detailCategory->name_cat . config('type.main');
@@ -39,7 +40,10 @@ class CategoryController extends Controller
 
     public function search(Request $request)
     {
-        $categoryService = new CategoryService();
+        $title = 'Tìm kiếm' . config('type.main');
+        $categoryService = new CategoryService;
+        $productService = new ProductService;
+
         $listCategories = $categoryService->listCategory(true);
         $listCategoriesCount = $categoryService->listCategoryHaveCountProduct();
 
@@ -54,10 +58,7 @@ class CategoryController extends Controller
             $filter['minPrice'] = 0;
         };
 
-        $productService = new ProductService();
         $searchProduct = $productService->searchProduct($filter);
-
-        $title = 'Tìm kiếm' . config('type.main');
 
         return view('main.pages.category-search', [
             'title' => $title,

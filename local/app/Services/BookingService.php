@@ -14,11 +14,11 @@ class BookingService extends ServiceProvider
 
     }
 
-    public function setBooking($listProduct)
+    public function setBooking($listProduct, $infoPerson)
     {
         // Table Booking
         $timestamp = time();
-        $codeBooking = 'FD' . gmdate('Ymdhms', $timestamp);;
+        $codeBooking = 'OD' . gmdate('Ymdhms', $timestamp);;
 
         $amountSale = 0;
 
@@ -26,15 +26,22 @@ class BookingService extends ServiceProvider
             $amountSale = $amountSale + $product['price_product'];
         }
 
+        // Insert Booking
         $queryBooking = Booking::insert([
             'code_booking'  => $codeBooking,
             'amount_sale'   => $amountSale,
-            'amount_net'    => $amountSale,
+            'shipping'      => SHIPPING_PRICE,
+            'amount_net'    => $amountSale + SHIPPING_PRICE,
+            'fullname'      => $infoPerson['fullname'],
+            'email'         => $infoPerson['email'],
+            'phone'         => $infoPerson['phone'],
+            'address'       => $infoPerson['address'],
         ]);
 
-        // Table Booking Detail
+        // Insert Booking Detail
         if ($queryBooking) {
             $bookingNew = Booking::where('booking_status', '=', BOOKING_STATUS_NEW)->orderBy('id_booking', 'desc')->first();
+            $idBooking = $bookingNew->id_booking;
 
             foreach($listProduct as $product) {
                 $queryBookingDetail = BookingDetail::insert([
@@ -47,7 +54,9 @@ class BookingService extends ServiceProvider
                     'price_net'     => $amountSale,
                 ]);
             }
+            return $idBooking;
         }
+        return null;
     }
 
     public function getBooking($id)

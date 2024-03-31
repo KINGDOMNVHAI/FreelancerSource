@@ -18,8 +18,13 @@ class CreateBookingTable extends Migration
             $table->increments('id_booking');
             $table->string('code_booking')->unique();
             $table->double('amount_sale');
+            $table->integer('shipping')->default(0);
             $table->double('amount_net');
             $table->integer('booking_status')->default(1); // 1:new 2:processing 3:done 4:cancelled
+            $table->string('fullname');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('address');
 
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));

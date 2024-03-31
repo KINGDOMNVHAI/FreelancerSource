@@ -38,8 +38,7 @@ class ProductService extends ServiceProvider
     {
         $result = [];
         $result = Products::join('discount', 'products.id_product', '=', 'discount.id_product')
-            ->join('product_category', 'products.id_product', '=', 'product_category.id_product')
-            ->join('categories', 'product_category.id_category', '=', 'categories.id_cat')
+            ->join('category_product', 'products.id_cat_product', '=', 'category_product.id_cat_product')
             ->where('enable_product', true)
             ->where('products.id_product', $idProduct)
             ->first();
@@ -71,20 +70,17 @@ class ProductService extends ServiceProvider
 
     public function getProductByCategory($idCat)
     {
-        $query = Products::join('product_category', 'products.id_product', '=', 'product_category.id_product')
-            ->join('categories', 'product_category.id_category', '=', 'categories.id_cat')
+        $query = Products::join('category_product', 'products.id_cat_product', '=', 'category_product.id_cat_product')
             ->select('products.*',
-                'product_category.*',
-                'categories.id_cat',
-                'categories.url_cat',
-                'categories.enable_cat',
+                'category_product.id_cat_product',
+                'category_product.url_cat_product',
+                'category_product.enable_cat_product',
             )
             ->where('products.enable_product', ENABLE)
-            ->where('product_category.enable_product_category', ENABLE)
-            ->where('categories.enable_cat', ENABLE);
+            ->where('category_product.enable_cat_product', ENABLE);
 
         if ($idCat != null) {
-            $query = $query->where('categories.id_cat', $idCat);
+            $query = $query->where('category_product.id_cat_product', $idCat);
         }
         return $query->paginate(config('limit.12'));
     }
