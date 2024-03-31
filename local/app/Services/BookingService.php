@@ -72,6 +72,8 @@ class BookingService extends ServiceProvider
             ,'products.thumbnail_product'
 
             , 'booking_detail.id_booking'
+            , 'booking_detail.quantity'
+            , 'booking_detail.price_sale'
             , 'booking_detail.price_net'
             , 'booking_detail.created_at'
         )->where('booking_detail.id_booking', '=', $id)

@@ -23,19 +23,31 @@ class EmailService extends Mailable
 
     }
 
-    public function sendEmailPayment($datas)
+    public function sendEmailPayment($idBooking)
     {
-        $email = 'nvhai2306@gmail.com';
-        $subject = "Thanh toán";
-        $to_email = $datas['email']; // Tới email mà người dùng đăng ký
-        $fullname = $datas['fullname'];
+        $bookingService = new BookingService;
 
-        // Check email
-        if ($to_email != null)
-        {
-            $buildEmail = new BuildEmail($fullname, $subject);
-            Mail::to($to_email)->send($buildEmail);
-            return true;
+        $infoBooking = $bookingService->getBooking($idBooking);
+        if ($infoBooking != null) {
+
+            $listProduct = $bookingService->getBookingDetail($infoBooking->id_booking);
+
+            $email = 'nvhai2306@gmail.com';
+            $to_email = $infoBooking->email; // Tới email mà người dùng đăng ký
+            $fullname = $infoBooking->fullname;
+            $phone = $infoBooking->phone;
+            $address = $infoBooking->address;
+            $code = $infoBooking->code_booking;
+
+            $subject = "Thông tin hóa đơn " . $code;
+
+            // Check email
+            if ($to_email != null)
+            {
+                $buildEmail = new BuildEmail($subject, $infoBooking, $listProduct);
+                Mail::to($to_email)->send($buildEmail);
+                return true;
+            }
         }
         return false;
     }

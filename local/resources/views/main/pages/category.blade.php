@@ -15,7 +15,7 @@
         <div class="col-lg-3 col-md-12">
             <!-- Price Start -->
             <div class="border-bottom mb-4 pb-4">
-                <h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
+                <h5 class="font-weight-semi-bold mb-4">Sắp xếp theo giá</h5>
                 <form action="{{ route ('search-product')}}" method="POST">
                     {{ csrf_field() }}
                     <div class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">
@@ -38,6 +38,8 @@
                         <input type="radio" class="custom-control-input" id="price-4" name="price">
                         <label class="custom-control-label" for="price-4">> 301.000 VND</label>
                     </div>
+
+                    <input type="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" value="Tìm kiếm" />
                 </form>
             </div>
             <!-- Price End -->
@@ -47,7 +49,7 @@
         <!-- Shop Product Start -->
         <div class="col-lg-9 col-md-12">
             <div class="row pb-3">
-                <div class="col-12 pb-1">
+                <!-- <div class="col-12 pb-1">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <div class="dropdown ml-4">
                             <button class="btn border dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
@@ -61,13 +63,13 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 @foreach($productCategory as $product)
                 <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                     <div class="card product-item border-0 mb-4">
                         <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                            <img class="img-fluid w-100" src="img/product-1.jpg" alt="">
+                            <img class="img-fluid w-100" src="{{asset('/upload/images/thumbnail/products/' . $product->thumbnail_product)}}" alt="">
                         </div>
                         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                             <h6 class="text-truncate mb-3">{{$product->name_product}}</h6>
@@ -86,7 +88,7 @@
 
                 <div class="col-12 pb-1">
                     <div class="text-center mb-4">
-                        <h2 class="section-title px-5"><span class="px-2">NOT FOUND</span></h2>
+                        <h2 class="section-title px-5"><span class="px-2">KHÔNG CÓ SẢN PHẨM</span></h2>
                     </div>
                 </div>
                 <div class="col-12 pb-1">

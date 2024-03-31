@@ -25,7 +25,7 @@ class CategoryController extends Controller
         $listCategoriesCount = $categoryService->listCategoryHaveCountProduct();
         $detailCategory = $categoryService->getCategory($urlCat);
 
-        $productCategory = $productService->getProductByCategory($detailCategory->id_cat);
+        $productCategory = $productService->getProductByCategory($detailCategory->id_cat_product);
 
         $title = $detailCategory->name_cat . config('type.main');
 

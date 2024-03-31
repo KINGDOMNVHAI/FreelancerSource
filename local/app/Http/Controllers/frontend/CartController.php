@@ -102,7 +102,7 @@ class CartController extends Controller
         }
         $request->session()->put('idBooking', $idBooking);
 
-        $isSent = $emailService->sendEmailPayment($datas);
+        $isSent = $emailService->sendEmailPayment($idBooking);
         if ($isSent) {
             $request->session()->forget(['arrayCart', 'total']);
             return redirect()->route('cart-completed', ['success' => config('email.sent')]);

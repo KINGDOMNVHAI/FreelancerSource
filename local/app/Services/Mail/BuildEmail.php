@@ -10,17 +10,18 @@ class BuildEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $fullname, $subject;
+    public $subject, $infoBooking, $listProduct;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($fullname, $subject)
+    public function __construct($subject, $infoBooking, $listProduct)
     {
-        $this->fullname = $fullname;
         $this->subject = $subject;
+        $this->infoBooking = $infoBooking;
+        $this->listProduct = $listProduct;
     }
 
     /**
@@ -35,7 +36,8 @@ class BuildEmail extends Mailable
             ->subject($this->subject)
             ->view('email.payment-email') //dẫn tới template của người dùng
             ->with([
-                'fullname' => $this->fullname,
+                'infoBooking' => $this->infoBooking,
+                'listProduct' => $this->listProduct,
             ]);
     }
 }
