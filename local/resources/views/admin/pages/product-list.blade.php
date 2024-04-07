@@ -5,9 +5,56 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6">
-                <div class="card-body">
-
+            <div class="col-md-12">
+                <div class="card">
+                    <form method="POST" action="{{route('product-index')}}">
+                    <div class="card-header card-header-rose card-header-text">
+                        <div class="card-text">
+                            <h4 class="card-title">Tìm sản phẩm</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        {{ csrf_field() }}
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Tên sản phẩm</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <input type="text" name="keyword" class="form-control" placeholder="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Giá</label>
+                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="number" name="minPrice" class="form-control" min="0" placeholder="Thấp nhất">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="number" name="maxPrice" class="form-control" min="0" placeholder="Cao nhất">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-lg-4 col-md-4 col-sm-3">
+                                <select class="selectpicker" data-style="select-with-transition"  title="To Price" data-size="7">
+                                    <option value="desc">From high</option>
+                                    <option value="asc">From low </option>
+                                </select>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <input type="submit" class="btn btn-fill btn-rose" value="Tìm kiếm" />
+                    </div>
+                    </form>
                 </div>
             </div>
             <div class="col-md-12">

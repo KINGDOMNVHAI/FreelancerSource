@@ -13,12 +13,12 @@
                     <span class="sidebar-normal"> THÔNG TIN CÁ NHÂN </span>
                 </a>
             </li>
-            <li class="nav-item <?= ($_SERVER['REQUEST_URI'] == '/security' ) ? 'active' : '' ?>">
-                <a class="nav-link" href="{{ route('security') }}">
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="route('security')">
                     <i class="material-icons">security</i>
                     <span class="sidebar-normal"> BẢO MẬT </span>
                 </a>
-            </li>
+            </li> -->
         </ul>
     </div>
 </li>

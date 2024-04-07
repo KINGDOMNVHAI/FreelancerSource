@@ -43,7 +43,7 @@ Route::post('/posts-many-image', 'Admin\PostController@updateManyImage')->name('
 
 // ======================= Product =======================
 
-Route::get('/product-list', 'Admin\ProductController@index')->name('product-index');
+Route::match(['GET', 'POST'], '/product-list', 'Admin\ProductController@index')->name('product-index');
 
 Route::match(['GET', 'POST'], '/product-insert-update/{id?}', 'Admin\ProductController@productInsertUpdate')->name('product-insert-update');
 
@@ -107,10 +107,10 @@ Route::post('/api-social-network-twitter', 'Admin\APISocialNetworkController@upd
 
 // ======================= Security =======================
 
-Route::get('/security', 'Admin\SecurityController@index')->name('security');
+// Route::get('/security', 'Admin\SecurityController@index')->name('security');
 
-Route::post('/security-update', 'Admin\SecurityController@update')->name('security-update');
+// Route::post('/security-update', 'Admin\SecurityController@update')->name('security-update');
 
 // ======================= Administrator =======================
 
-Route::get('/administrator', 'Admin\AdministratorController@index')->name('administrator');
+// Route::get('/administrator', 'Admin\AdministratorController@index')->name('administrator');

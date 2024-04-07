@@ -17,7 +17,7 @@ class ProductController extends Controller
         $this->title = " | Bookstore ";
     }
 
-    public function index()
+    public function index(Request $request)
     {
         if (Auth::check())
         {

@@ -16,9 +16,9 @@
         @endif
 
         <div class="row">
-            <div class="col-md-12">
-                <a href="{{route('user-profile-print-pdf', $user->id)}}" class="btn btn-fill btn-rose">In file PDF</a>
-            </div>
+            <!-- <div class="col-md-12">
+                <a href="" class="btn btn-fill btn-rose">In file PDF</a>
+            </div> -->
 
             <div class="col-md-12">
                 <form action="{{route('user-profile-update')}}" method="POST" enctype="multipart/form-data">
