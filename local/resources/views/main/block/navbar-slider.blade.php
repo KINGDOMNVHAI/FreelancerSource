@@ -31,16 +31,6 @@
             </a>
         </div>
         <div class="col-lg-6 col-6 text-left">
-            <form action="">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Tìm sản phẩm">
-                    <div class="input-group-append">
-                        <span class="input-group-text bg-transparent text-primary">
-                            <i class="fa fa-search"></i>
-                        </span>
-                    </div>
-                </div>
-            </form>
         </div>
         <div class="col-lg-3 col-6 text-right">
             <a href="{{route('cart-checkout')}}" class="btn border">
@@ -104,22 +94,22 @@
             <div id="header-carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active" style="height: 410px;">
-                        <img class="img-fluid" src="img/carousel-1.jpg" alt="Image">
+                        <img class="img-fluid" src="{{asset('/frontend/bookstore/img/carousel-sach-thang-4.jpg')}}" alt="Image">
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                             <div class="p-3" style="max-width: 700px;">
-                                <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
-                                <h3 class="display-4 text-white font-weight-semi-bold mb-4">Fashionable Dress</h3>
-                                <a href="" class="btn btn-light py-2 px-3">Mua ngay!</a>
+                                <h4 class="text-light text-uppercase font-weight-medium mb-3">Đọc sách</h4>
+                                <h3 class="display-4 text-white font-weight-semi-bold mb-4">Sách tháng 4</h3>
+                                <!-- <a href="" class="btn btn-light py-2 px-3">Mua ngay!</a> -->
                             </div>
                         </div>
                     </div>
                     <div class="carousel-item" style="height: 410px;">
-                        <img class="img-fluid" src="img/carousel-2.jpg" alt="Image">
+                        <img class="img-fluid" src="{{asset('/frontend/bookstore/img/carousel-sach-thang-3.jpg')}}" alt="Image">
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                             <div class="p-3" style="max-width: 700px;">
-                                <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
-                                <h3 class="display-4 text-white font-weight-semi-bold mb-4">Reasonable Price</h3>
-                                <a href="" class="btn btn-light py-2 px-3">Mua ngay!</a>
+                                <h4 class="text-light text-uppercase font-weight-medium mb-3">Đọc sách</h4>
+                                <h3 class="display-4 text-white font-weight-semi-bold mb-4">Sách tháng 3</h3>
+                                <!-- <a href="" class="btn btn-light py-2 px-3">Mua ngay!</a> -->
                             </div>
                         </div>
                     </div>

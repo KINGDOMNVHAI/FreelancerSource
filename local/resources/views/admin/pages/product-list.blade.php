@@ -72,8 +72,9 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
 
+                        {!! $listProduct->links('pagination::bootstrap-4') !!}
+                    </div>
                     @endif
 
                 </div>

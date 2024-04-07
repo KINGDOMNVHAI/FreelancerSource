@@ -26,6 +26,10 @@ class CategoryController extends Controller
         $detailCategory = $categoryService->getCategory($urlCat);
 
         $productCategory = $productService->getProductByCategory($detailCategory->id_cat_product);
+        $notFound = true;
+        if ($productCategory == null) {
+            $notFound = false;
+        }
 
         $title = $detailCategory->name_cat . config('type.main');
 
@@ -35,6 +39,7 @@ class CategoryController extends Controller
             'listCategoriesCount' => $listCategoriesCount,
             'detailCategory' => $detailCategory,
             'productCategory' => $productCategory,
+            'notFound' => $notFound
         ]);
     }
 
@@ -77,6 +82,10 @@ class CategoryController extends Controller
         };
 
         $searchProduct = $productService->searchProduct($filter);
+        $notFound = true;
+        if ($searchProduct == null) {
+            $notFound = false;
+        }
 
         return view('main.pages.category-search', [
             'title' => $title,
@@ -86,6 +95,7 @@ class CategoryController extends Controller
             'listCategories' => $listCategories,
             'listCategoriesCount' => $listCategoriesCount,
             'searchProduct' => $searchProduct,
+            'notFound' => $notFound
         ]);
     }
 }

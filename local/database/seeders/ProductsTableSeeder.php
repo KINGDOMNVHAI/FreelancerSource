@@ -309,6 +309,35 @@ class ProductsTableSeeder extends Seeder
 
         $i++;
         Products::create([
+            'name_product' => 'Inuyasha tập 2',
+            'url_product' => 'inuyasha-tap-2',
+            'info_product' => 'Inuyasha tập 2',
+            'present_product' => '<p></p>
+',
+            'content_product' => '
+',
+            'thumbnail_product' => 'inuyasha-tap-2-thumbnail.jpg',
+            'img_product_1' => 'inuyasha-tap-2-1.jpg',
+            'img_product_2' => 'inuyasha-tap-2-2.jpg',
+            'img_product_3' => 'inuyasha-tap-2-3.jpg',
+            'id_cat_product' => CATEGORY_MANGA,
+            'enable_product' => 1,
+            'price_product' => 75000,
+            'unit_product' => 'Quyển',
+            'popular' => 1,
+        ]);
+
+        Discount::create([
+            'id_product' => $i,
+            'price_discount' => 0,
+            'type_discount' => '%',
+            'start_date' => '2022-07-18',
+            'end_date' => null,
+            'enable_discount' => 0,
+        ]);
+
+        $i++;
+        Products::create([
             'name_product' => 'Giấy Paper One A4 ĐL 70gsm',
             'url_product' => 'paper-one-a4-dl-70gsm',
             'info_product' => 'Giấy Paper One A4 ĐL 70gsm',
@@ -336,6 +365,32 @@ class ProductsTableSeeder extends Seeder
             'enable_discount' => 0,
         ]);
 
+        $i++;
+        Products::create([
+            'name_product' => 'Giấy Paper Excel A5 70gsm',
+            'url_product' => 'paper-excel-a5-70gsm',
+            'info_product' => 'Giấy Paper Excel A5 70gsm',
+            'present_product' => '<p></p>
+',
+            'content_product' => '
+',
+            'thumbnail_product' => 'paper-excel-a5-70gsm-thumbnail.jpg',
+            'img_product_1' => 'paper-excel-a5-70gsm-1.jpg',
+            'id_cat_product' => CATEGORY_VAN_PHONG_PHAM,
+            'enable_product' => 1,
+            'price_product' => 75000,
+            'unit_product' => 'Quyển',
+            'popular' => 1,
+        ]);
+
+        Discount::create([
+            'id_product' => $i,
+            'price_discount' => 0,
+            'type_discount' => '%',
+            'start_date' => '2022-07-18',
+            'end_date' => null,
+            'enable_discount' => 0,
+        ]);
 
 
 

@@ -56,7 +56,7 @@ class ProductService extends ServiceProvider
     {
         return Products::where('enable_product', ENABLE)
             ->where('popular', 1)
-            ->limit(config('limit.12'))
+            ->limit(LIMIT_12)
             ->get();
     }
 
@@ -82,7 +82,7 @@ class ProductService extends ServiceProvider
         if ($idCat != null) {
             $query = $query->where('category_product.id_cat_product', $idCat);
         }
-        return $query->paginate(config('limit.12'));
+        return $query->paginate(LIMIT_8);
     }
 
     public function searchProduct($filter)
@@ -117,7 +117,7 @@ class ProductService extends ServiceProvider
             $query = $query->where('products.price_product', '<=', $filter['maxPrice']);
         }
 
-        return $query->paginate(config('limit.12'));
+        return $query->paginate(LIMIT_8);
     }
 
     /**

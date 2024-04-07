@@ -26,6 +26,12 @@ define('EMAIL', '');
 define('SHIPPING_PRICE', 10000);
 define('SHIPPING_PRICE_TEXT', '10.000');
 
+// === Info ===
+
+define('LIMIT_6', 6);
+define('LIMIT_8', 8);
+define('LIMIT_12', 12);
+
 // === URL ===
 
 define('URL_SHOPEE', 'duong-dan-shopee');

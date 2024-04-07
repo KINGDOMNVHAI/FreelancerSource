@@ -1,5 +1,13 @@
 <form action="{{ route ('search-product')}}" method="POST">
     {{ csrf_field() }}
+    <div class="input-group">
+        <input type="text" class="form-control" name="keyword" placeholder="Tìm sản phẩm">
+        <div class="input-group-append">
+            <span class="input-group-text bg-transparent text-primary">
+                <i class="fa fa-search"></i>
+            </span>
+        </div>
+    </div><br>
     <div class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">
         <input type="radio" class="custom-control-input" id="price-1" name="price" value="price-1">
         <label class="custom-control-label" for="price-1">All price</label>
