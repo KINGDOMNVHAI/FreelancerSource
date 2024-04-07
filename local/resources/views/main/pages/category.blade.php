@@ -16,31 +16,7 @@
             <!-- Price Start -->
             <div class="border-bottom mb-4 pb-4">
                 <h5 class="font-weight-semi-bold mb-4">Sắp xếp theo giá</h5>
-                <form action="{{ route ('search-product')}}" method="POST">
-                    {{ csrf_field() }}
-                    <div class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">
-                        <input type="radio" class="custom-control-input" id="price-1" name="price">
-                        <label class="custom-control-label" for="price-1">All price</label>
-                    </div>
-                    <div class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">
-                        <input type="radio" class="custom-control-input" id="price-2" name="price">
-                        <label class="custom-control-label" for="price-2">0 - 100.000 VND</label>
-                    </div>
-                    <div class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">
-                        <input type="radio" class="custom-control-input" id="price-3" name="price">
-                        <label class="custom-control-label" for="price-3">101.000 - 200.000 VND</label>
-                    </div>
-                    <div class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">
-                        <input type="radio" class="custom-control-input" id="price-4" name="price">
-                        <label class="custom-control-label" for="price-4">201.000 - 300.000 VND</label>
-                    </div>
-                    <div class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">
-                        <input type="radio" class="custom-control-input" id="price-4" name="price">
-                        <label class="custom-control-label" for="price-4">> 301.000 VND</label>
-                    </div>
-
-                    <input type="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" value="Tìm kiếm" />
-                </form>
+                @include('main.block.form-search')
             </div>
             <!-- Price End -->
         </div>

@@ -6,6 +6,8 @@
 
 @section('content')
 
+@include('main.block.navbar-slider')
+
 <!-- Shop Start -->
 <div class="container-fluid pt-5">
     <div class="row px-xl-5">
@@ -14,29 +16,7 @@
             <!-- Price Start -->
             <div class="border-bottom mb-4 pb-4">
                 <h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
-                <form action="{{ route ('search-product')}}" method="POST">
-                    {{ csrf_field() }}
-                    <div class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">
-                        <input type="radio" class="custom-control-input" id="price-1" name="price">
-                        <label class="custom-control-label" for="price-1">All price</label>
-                    </div>
-                    <div class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">
-                        <input type="radio" class="custom-control-input" id="price-2" name="price">
-                        <label class="custom-control-label" for="price-2">0 - 100.000 VND</label>
-                    </div>
-                    <div class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">
-                        <input type="radio" class="custom-control-input" id="price-3" name="price">
-                        <label class="custom-control-label" for="price-3">101.000 - 200.000 VND</label>
-                    </div>
-                    <div class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">
-                        <input type="radio" class="custom-control-input" id="price-4" name="price">
-                        <label class="custom-control-label" for="price-4">201.000 - 300.000 VND</label>
-                    </div>
-                    <div class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">
-                        <input type="radio" class="custom-control-input" id="price-4" name="price">
-                        <label class="custom-control-label" for="price-4">> 301.000 VND</label>
-                    </div>
-                </form>
+                @include('main.block.form-search')
             </div>
             <!-- Price End -->
         </div>
@@ -88,7 +68,7 @@
                     </div>
                 </div>
                 <div class="col-12 pb-1">
-                    {!! $productCategory->links('pagination::bootstrap-4') !!}
+                    {!! $searchProduct->links('pagination::bootstrap-4') !!}
                     <!-- <nav aria-label="Page navigation">
 
                     </nav> -->

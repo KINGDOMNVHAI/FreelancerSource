@@ -47,11 +47,29 @@ class CategoryController extends Controller
         $listCategories = $categoryService->listCategory(true);
         $listCategoriesCount = $categoryService->listCategoryHaveCountProduct();
 
+        $price = $request->price;
+        $minPrice = 0;
+        $maxPrice = 0;
+        if ($price == "price-2") {
+            $maxPrice = 100000;
+        } else if ($price == "price-3") {
+            $minPrice = 100001;
+            $maxPrice = 200000;
+        } else if ($price == "price-4") {
+            $minPrice = 200001;
+            $maxPrice = 300000;
+        } else if ($price == "price-5") {
+            $minPrice = 200001;
+            $maxPrice = 300000;
+        } else {
+            $maxPrice = 999999999;
+        }
+
         $arrIdCat[] = $request->idCat;
         $filter = [
             'keyword' => $request->keyword,
-            'minPrice' => $request->minPrice,
-            'maxPrice' => $request->maxPrice,
+            'minPrice' => $minPrice,
+            'maxPrice' => $maxPrice,
             'idCat' => $arrIdCat,
         ];
         if ($request->minPrice == null) {
