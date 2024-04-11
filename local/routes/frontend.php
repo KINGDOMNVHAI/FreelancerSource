@@ -17,10 +17,6 @@ Route::get('/blog/{idCat}', 'frontend\PostController@blog')->name('blog');
 
 Route::get('/post/{urlPost}', 'frontend\PostController@post')->name('post');
 
-Route::get('/register', 'multistep\MultiStepController@index')->name('main-register');
-
-Route::post('/register-insert', 'multistep\MultiStepController@register')->name('register-insert');
-
 Route::get('/cart-add/{idProduct}/{quantity}', 'frontend\CartController@add')->name('cart-add');
 
 Route::get('/cart-checkout', 'frontend\CartController@checkout')->name('cart-checkout');

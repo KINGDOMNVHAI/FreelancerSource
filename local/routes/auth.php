@@ -9,7 +9,7 @@ Route::get('/login','auth\LoginController@index')->name('login');
 
 Route::post('/check-login','auth\LoginController@login')->name('check-login');
 
-Route::get('/register', 'auth\RegisterController@index')->name('register');
+Route::get('/register', 'auth\RegisterController@index')->name('main-register');
 
 Route::post('/register-insert', 'auth\RegisterController@create')->name('register-insert');
 

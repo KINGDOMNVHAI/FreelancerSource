@@ -27,7 +27,7 @@
                             <input type="password" class="form-control" name="password" placeholder="password">
                         </div>
                         <div class="form-group">
-                            <a href="{{ route('forgot-password') }}">Quên mật khẩu</a>
+                            <a href="{{route('forgot-password')}}">Quên mật khẩu</a>
                         </div>
                     </div>
                     <div class="card-footer border-secondary bg-transparent">

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\users;
 use App\Http\Controllers\Controller;
-use App\Services\All\UserService;
+use App\Services\UserService;
 use App\Services\Auth\LoginService;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -50,9 +50,9 @@ class RegisterController extends Controller
 
     public function index(Request $request)
     {
-        $title = "SIGN UP " . TITLE_SOSHIKI_INDEX;
+        $title = "ĐĂNG KÝ " . config('title.main');
         $request->session()->forget(['message']);
-        return view('auth.pages.register', [
+        return view('main.pages.register', [
             'title' => $title,
         ]);
     }
@@ -73,6 +73,8 @@ class RegisterController extends Controller
 
     public function create(Request $request)
     {
+        $user = new UserService;
+
         // Values for variables
         $firstname = $request->firstname;
         $lastname = $request->lastname;
@@ -123,7 +125,7 @@ class RegisterController extends Controller
         $validator = Validator::make($datas, $rules, $messages);
 
         if ($validator->fails()) {
-            return redirect('kd-register')
+            return redirect('register')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -133,17 +135,16 @@ class RegisterController extends Controller
 
 
         //check email
-        $user = new UserService;
         $checkUsername = $user->checkUserByUsername($username);
 
 
 
         if ($checkUsername != null) {
-            return redirect()->route('kd-register')->with('messageRegister', 'Username đã tồn tại');
+            return redirect()->route('register')->with('messageRegister', 'Username đã tồn tại');
         }
         $checkEmail = $user->checkUserByEmail($email);
         if ($checkEmail != null) {
-            return redirect()->route('kd-register')->with('messageRegister', 'Email đã tồn tại');
+            return redirect()->route('register')->with('messageRegister', 'Email đã tồn tại');
         }
 
         users::insert([
