@@ -2,10 +2,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Mail\ForgotPasswordEmail;
+use App\Services\Mail\ForgotPasswordEmail;
 use App\Mail\InforUserEmail;
-use App\Model\users;
-use App\Services\All\UserService;
+use App\Services\UserService;
 use DB;
 use File;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
@@ -39,8 +38,8 @@ class ForgotPasswordController extends Controller
 
     public function index()
     {
-        $title = "LOGIN " . config('title.forgot-password');
-        return view('auth.pages.forgot', [
+        $title = "Forgot Password " . config('title.forgot-password');
+        return view('main.pages.forgot-password', [
             'title' => $title,
         ]);
     }
@@ -67,8 +66,8 @@ class ForgotPasswordController extends Controller
                 $email = $user->changePasswordById($query->id, $newpassword); //lấy id của email người dùng và password mới
                 Mail::to($to_email)->send(new ForgotPasswordEmail($fullname_query, $newpassword)); // nhận password mới
 
-                $request->session()->put('message', EMAIL_IS_SENT);
-                return redirect()->route('login')->with('message', __(EMAIL_IS_SENT)); //trả về name của router kèm theo thông tin trả về
+                $request->session()->put('message', config('email.sent'));
+                return redirect()->route('login')->with('message', __(config('email.sent'))); //trả về name của router kèm theo thông tin trả về
             }
             else
             {

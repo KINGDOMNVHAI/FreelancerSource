@@ -26,6 +26,9 @@
                             <label>Mật khẩu</label>
                             <input type="password" class="form-control" name="password" placeholder="password">
                         </div>
+                        @if(session()->has('message'))
+                        <div class="alert alert-danger">{{ session('message') }}</div>
+                        @endif
                         <div class="form-group">
                             <a href="{{route('forgot-password')}}">Quên mật khẩu</a>
                         </div>

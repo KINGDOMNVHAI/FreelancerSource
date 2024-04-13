@@ -17,6 +17,9 @@
                             <div class="header-login ml-10 fs-30 font-bold color-363636 fm-header">Sign Up</div>
                             <div class="fs-16 font-bold color-363636 fm-title">Firstname *</div>
                             <input name="firstname" type="text" id="validation-firstname" class="form-control custom-input color-373737 fs-16" placeholder="Firstname" />
+                            @error('firstname')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
 
                             <div class="fs-16 font-bold color-363636 fm-title">Lastname *</div>
                             <input name="lastname" type="text" id="validation-lastname" class="form-control custom-input color-373737 fs-16" placeholder="Lastname" />
@@ -30,8 +33,17 @@
                             <div class="fs-16 font-bold color-363636 fm-title">Password *</div>
                             <input name="password" type="password" id="validation-password" class="form-control custom-input color-373737 fs-16" placeholder="Enter your password" />
 
+                            @if ($errors->any())
+                            <div id="wrap-error" class="wrap-error">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
 
-                            <div id="wrap-error" class="wrap-error"></div>
+
                             <div class="wrap-action-login text-center">
                                 <button type="button" id="sbRegister" class="btn btn-custom fs-24 mt-10">Sign Up</button>
                             </div>

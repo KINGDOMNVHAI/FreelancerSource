@@ -23,7 +23,7 @@
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input class="form-control" type="email" placeholder="Email">
+                        <input class="form-control" type="email" name="email" placeholder="Email">
                     </div>
                 </div>
                 <div class="card-footer border-secondary bg-transparent">

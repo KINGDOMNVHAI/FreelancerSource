@@ -77,7 +77,7 @@ class UserService extends ServiceProvider
         $query = DB::table('users')
             ->where('id', '=', $id)
             ->update([
-                'password' => bcrypt($password),
+                'password' => md5($password),
             ]);
 
         return $query;

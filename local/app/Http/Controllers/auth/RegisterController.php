@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\users;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Services\UserService;
 use App\Services\Auth\LoginService;
@@ -104,7 +104,7 @@ class RegisterController extends Controller
             'firstname' => 'required|string|min:1|max:255',
             'lastname'  => 'required|string|min:1|max:255',
             'username'  => 'required|string|min:5|max:20|unique:users',
-            'password'  => 'required|string|min:5|max:20|confirmed',
+            'password'  => 'required|string|min:5|max:20',
             'email'     => 'required|string|email|max:50|unique:users',
         ];
 
@@ -119,6 +119,7 @@ class RegisterController extends Controller
             'lastname.required' => 'Bạn chưa nhập họ',
             'username.required' => 'Bạn chưa nhập tên đăng nhập',
             'password.required' => 'Bạn chưa nhập mật khẩu',
+            'password.min' => 'Mật khẩu phải có 5 ký tự',
             'email.required' => 'Bạn chưa nhập email',
         ];
 
@@ -130,14 +131,8 @@ class RegisterController extends Controller
                         ->withInput();
         }
 
-
-
-
-
         //check email
         $checkUsername = $user->checkUserByUsername($username);
-
-
 
         if ($checkUsername != null) {
             return redirect()->route('register')->with('messageRegister', 'Username đã tồn tại');
@@ -147,11 +142,11 @@ class RegisterController extends Controller
             return redirect()->route('register')->with('messageRegister', 'Email đã tồn tại');
         }
 
-        users::insert([
+        User::insert([
             'firstname' => $firstname,
             'lastname'  => $lastname,
             'username'  => $username,
-            'password'  => bcrypt($password),
+            'password'  => md5($password),
             'email'     => $email,
             'role'      => ROLE_MEMBER,
             'city'      => $city,
