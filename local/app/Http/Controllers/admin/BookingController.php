@@ -12,23 +12,23 @@ use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         if (Auth::check())
         {
             // Luôn luôn trong trạng thái lấy data từ các input trong form dù có search hay không
             $request = Request::capture();
-            $params = [
-                'name_post' => $request->query('name_post'),
-                'year' => $request->query('year'),
-                'month' => $request->query('month'),
-                'newold' => $request->query('newold'),
-                'id_cat_post' => $request->query('idCat'),
-                'sort' => 'DESC'
+            $filter = [
+                'code_booking' => $request->code_booking,
+                'year' => $request->year,
+                'month' => $request->month,
+                'status' => $request->status,
+                'sort' => $request->newold,
             ];
 
             $bookingService = new BookingService;
-            $listBooking = $bookingService->getListBookingPaginate();
+            $listBooking = $bookingService->searchBooking($filter);
+            $countBooking = $bookingService->countBookingByStatus();
 
             // $listCategory = new CategoryService;
             // $viewCategory = $listCategory->listCategory(true);
@@ -40,6 +40,7 @@ class BookingController extends Controller
                 'title'         => config('title.post-management'),
                 'currentyear'   => date("Y"),
                 'listBooking'   => $listBooking,
+                'countBooking'   => $countBooking,
             ]);
         }
         else {

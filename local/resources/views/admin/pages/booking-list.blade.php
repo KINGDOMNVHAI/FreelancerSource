@@ -8,7 +8,74 @@
     </div>
 
     <div class="container-fluid">
-    <form>
+        <div class="row">
+            <?php
+                $count = 1;
+                $color = 'card-header-warning';
+                $icon = 'equalizer';
+                $status = 'mới';
+            ?>
+
+            @foreach($countBooking as $booking)
+
+            <?php
+                switch ($count) {
+                    case "1":
+                        $color = "card-header-warning";
+                        $icon = 'add_circle_outline';
+                        $status = 'mới';
+                        break;
+                    case "2":
+                        $color = 'card-header-rose';
+                        $icon = 'fast_forward';
+                        $status = 'đang xử lý';
+                        break;
+                    case "3":
+                        $color = 'card-header-success';
+                        $icon = 'done';
+                        $status = 'hoàn thành';
+                        break;
+                    case "4":
+                        $color = 'card-header-info';
+                        $icon = 'cancel';
+                        $status = 'hủy bỏ';
+                        break;
+                    default:
+                        $color = 'card-header-warning';
+                        $icon = 'add_circle_outline';
+                        $status = 'mới';
+                }
+
+                if ($count == 4)
+                {
+                    $count = 1;
+                }
+                else
+                {
+                    $count++;
+                }
+            ?>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header {{$color}} card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">{{$icon}}</i>
+                        </div>
+                        <p class="card-category">Đơn hàng {{$status}}</p>
+                        <h3 class="card-title">{{$booking}}</h3>
+                    </div>
+                    <div class="card-footer">
+                        <!-- <div class="stats">
+                            <i class="material-icons text-danger">search</i>
+                            <a href="">Danh sách tất cả sản phẩm</a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+
+    <form action="{{route('booking-index')}}" method="GET">
     {!! csrf_field() !!}
         <div class="row">
             <div class="col-md-12">
@@ -47,7 +114,17 @@
                         </div>
                         <div class="col-md-2">
                             <div class="dropdown bootstrap-select show-tick">
-                                <select class="selectpicker" name="newold" id="newold" data-style="select-with-transition" title="Mới / Cũ" data-size="7" tabindex="-98">
+                                <select class="selectpicker" name="status" id="status" data-style="select-with-transition" title="Tình trạng" data-size="7" tabindex="-98">
+                                    <option value="1" <?php echo (isset($_GET['status']) && $_GET['status'] == 1) ? 'selected' : '' ?>>Mới</option>
+                                    <option value="2" <?php echo (isset($_GET['status']) && $_GET['status'] == 2) ? 'selected' : '' ?>>Đang xử lý</option>
+                                    <option value="3" <?php echo (isset($_GET['status']) && $_GET['status'] == 3) ? 'selected' : '' ?>>Hoàn thành</option>
+                                    <option value="4" <?php echo (isset($_GET['status']) && $_GET['status'] == 4) ? 'selected' : '' ?>>Hủy bỏ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="dropdown bootstrap-select show-tick">
+                                <select class="selectpicker" name="newold" id="newold" data-style="select-with-transition" title="Thời gian" data-size="7" tabindex="-98">
                                     <option value="desc" <?php echo (isset($_GET['newold']) && $_GET['newold'] == 'desc') ? 'selected' : '' ?>>Mới nhất </option>
                                     <option value="asc" <?php echo (isset($_GET['newold']) && $_GET['newold'] == 'asc') ? 'selected' : '' ?>>Cũ nhất</option>
                                 </select>

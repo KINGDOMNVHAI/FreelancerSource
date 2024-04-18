@@ -57,6 +57,9 @@ define('CATEGORY_MANGA', 5);
 define('CATEGORY_VAN_PHONG_PHAM', 6);
 
 define('BOOKING_STATUS_NEW', 1);
+define('BOOKING_STATUS_PROCESSING', 2);
+define('BOOKING_STATUS_DONE', 3);
+define('BOOKING_STATUS_CANCELLED', 4);
 
 $titleMain = " | Bookstore";
 

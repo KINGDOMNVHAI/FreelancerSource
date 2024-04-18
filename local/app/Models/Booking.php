@@ -18,5 +18,6 @@ class Booking extends Model
 
     protected $fillable = [
         'id_booking', 'code_booking', 'amount_sale', 'amount_net',
+        'shipping', 'booking_status', 'fullname', 'phone', 'email', 'address'
     ];
 }

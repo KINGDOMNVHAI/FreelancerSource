@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Models\Booking;
 use App\Models\BookingDetail;
+use App\Ultis\StringUltis;
 use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 use DB;
@@ -103,5 +104,78 @@ class BookingService extends ServiceProvider
         // return Booking::where('booking_status', '=', $bookingStatus)
         //             ->orderBy('created_at', 'desc')
         //             ->paginate();
+    }
+
+    public function searchBooking($filter)
+    {
+        // idCat là một mảng nên dùng IN (1,2,3,4,5)
+        $query = DB::table('booking')
+            ->select('booking.*',
+            )
+        ;
+
+        $code = null;
+        $stringUltis = new StringUltis();
+        if ($filter['code_booking'] != null) {
+            $code = $stringUltis->removeSpecialCharacter($filter['code_booking']);
+            $code = '%' . $code . '%';
+            $query = $query->where('booking.code_booking', 'like', $code);
+        }
+
+        if ($filter['year'] != null) {
+            $query = $query->whereYear('created_at', '=', $filter['year']);
+        }
+
+        if ($filter['month'] != null) {
+            $query = $query->whereMonth('created_at', '=', $filter['month']);
+        }
+
+        if ($filter['status'] != null) {
+            $query = $query->where('booking_status', '=', $filter['status']);
+        }
+
+        if ($filter['sort'] != null && $filter['sort'] == 'asc') {
+            $query = $query->orderBy('created_at', 'asc');
+        } else {
+            $query = $query->orderBy('created_at', 'desc');
+        }
+
+        return $query->paginate(LIMIT_8);
+    }
+
+    public function countBookingByStatus()
+    {
+        $result = [];
+        $listBooking = DB::table('booking')
+            ->select(DB::raw('
+                count(booking.id_booking) as count_booking,
+                booking.booking_status
+            '))->groupBy('booking.booking_status')
+            ->get();
+
+        $countNew = 0;
+        $countProcessing = 0;
+        $countDone = 0;
+        $countCancelled = 0;
+        foreach($listBooking as $booking) {
+            if ($booking->booking_status == 1) {
+                $countNew = $booking->count_booking;
+            }
+            if ($booking->booking_status == 2) {
+                $countProcessing = $booking->count_booking;
+            }
+            if ($booking->booking_status == 3) {
+                $countDone = $booking->count_booking;
+            }
+            if ($booking->booking_status == 4) {
+                $countCancelled = $booking->count_booking;
+            }
+        }
+        array_push($result, $countNew);
+        array_push($result, $countProcessing);
+        array_push($result, $countDone);
+        array_push($result, $countCancelled);
+
+        return $result;
     }
 }

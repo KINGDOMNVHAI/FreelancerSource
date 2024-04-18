@@ -22,12 +22,13 @@
         </ul>
     </div>
 </li>
-<li class="nav-item <?= ($_SERVER['REQUEST_URI'] == '/api-social-network' ) ? 'active' : '' ?>">
-    <a class="nav-link" href="{{ route('api-social-network-index') }}">
+
+<!-- <li class="nav-item">
+    <a class="nav-link" href="route('api-social-network-index')">
         <i class="material-icons">live_tv</i>
         <p> API SOCIAL NETWORK </p>
     </a>
-</li>
+</li> -->
 
 <li class="nav-item">
     <a class="nav-link" data-toggle="collapse" href="#settingsExamples">
