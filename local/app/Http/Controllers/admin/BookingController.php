@@ -66,4 +66,17 @@ class BookingController extends Controller
             return redirect()->route('login');
         }
     }
+
+    public function changeStatus($id, $status)
+    {
+        if (Auth::check())
+        {
+            $bookingService = new BookingService;
+            $bookingService->changeStatus($id, $status);
+            return redirect()->route('booking-detail', $id);
+        }
+        else {
+            return redirect()->route('login');
+        }
+    }
 }

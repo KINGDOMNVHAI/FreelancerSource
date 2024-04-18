@@ -24,6 +24,15 @@
                                 <div class="ml-5 col-md-6">
                                     <div class="form-group text-description">
                                         <p>Mã đơn hàng: {{ $booking->code_booking }}</p>
+                                        @if ($booking->booking_status == 1)
+                                        <p class="btn btn-success">Mới</p>
+                                        @elseif ($booking->booking_status == 2)
+                                        <p class="btn btn-success">Đang xử lý</p>
+                                        @elseif ($booking->booking_status == 3)
+                                        <p class="btn btn-success">Hoàn thành</p>
+                                        @elseif ($booking->booking_status == 4)
+                                        <p class="btn btn-success">Hủy bỏ</p>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -57,17 +66,29 @@
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <button class="btn btn-danger">
-                                        <i class="material-icons">close</i> Cancel
-                                    </button>
+                                    @if ($booking->booking_status == 1 || $booking->booking_status == 2)
+                                    <a href="/bookstore/change-status/{{$booking->id_booking}}/4" class="btn btn-danger">
+                                        <i class="material-icons">close</i> Hủy bỏ
+                                    </a>
+                                    @endif
                                 </div>
                                 <div class="col-md-6 text-right">
-                                    <button class="btn btn-success">
+
+                                    @if ($booking->booking_status == 1)
+                                    <a href="/bookstore/change-status/{{$booking->id_booking}}/2" class="btn btn-danger">
+                                        <span class="btn-label">
+                                            <i class="material-icons">fast_forward</i>
+                                        </span>
+                                        Đang xử lý
+                                    </a>
+                                    @elseif ($booking->booking_status == 2)
+                                    <a href="/bookstore/change-status/{{$booking->id_booking}}/3" class="btn btn-danger">
                                         <span class="btn-label">
                                             <i class="material-icons">check</i>
                                         </span>
-                                        Completed
-                                    </button>
+                                        Hoàn thành
+                                    </a>
+                                    @endif
                                 </div>
                             </div>
                             <div class="clearfix"></div>
@@ -78,9 +99,7 @@
             <div class="col-md-4">
                 <div class="card card-profile">
                     <div class="card-avatar">
-                        <a href="#pablo">
-                            <img class="img" src="{{ asset('frontend/bookstore/img/user.png') }}" />
-                        </a>
+                        <img class="img" src="{{ asset('frontend/bookstore/img/user.png') }}" alt="{{ $booking->fullname }}" />
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">{{ $booking->fullname }}</h4>
@@ -96,4 +115,9 @@
     </div>
 </div>
 
+<script>
+    function changeStatus(id, status) {
+        window.open("/bookstore/change-status/" + id + "/" + status);
+    }
+</script>
 @stop

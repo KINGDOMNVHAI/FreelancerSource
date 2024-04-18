@@ -178,4 +178,12 @@ class BookingService extends ServiceProvider
 
         return $result;
     }
+
+    public function changeStatus($id, $status)
+    {
+        Booking::where('id_booking', $id)
+            ->update([
+                'booking_status' => $status,
+            ]);
+    }
 }

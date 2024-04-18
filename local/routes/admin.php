@@ -49,9 +49,11 @@ Route::match(['GET', 'POST'], '/product-insert-update/{id?}', 'Admin\ProductCont
 
 // ======================= Booking =======================
 
-Route::get('/booking-list', 'Admin\BookingController@index')->name('booking-index');
+Route::match(['GET', 'POST'], '/booking-list', 'Admin\BookingController@index')->name('booking-index');
 
 Route::get('/booking-detail/{idBooking}', 'Admin\BookingController@detail')->name('booking-detail');
+
+Route::get('/change-status/{idBooking}/{status}', 'Admin\BookingController@changeStatus')->name('booking-change-status');
 
 // ======================= Channels =======================
 

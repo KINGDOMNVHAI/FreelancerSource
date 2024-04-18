@@ -180,7 +180,7 @@
                                             @endif
                                         </td>
                                         <td class="td-actions">
-                                            <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" onclick="window.location = '{{ route('booking-detail', $booking->id_booking) }}'">
+                                            <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" onclick="window.location='{{ route('booking-detail', $booking->id_booking) }}'">
                                                 <i class="material-icons">remove_red_eye</i>
                                             </button>
                                         </td>
