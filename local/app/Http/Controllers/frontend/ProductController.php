@@ -47,7 +47,8 @@ class ProductController extends Controller
         $categoryService = new CategoryService;
         $productService = new ProductService;
 
-        $productInfo = $productService->getProduct($urlProduct);
+        $productInfo = $productService->getProductByURL($urlProduct);
+
         if ($productInfo == null) {
             return view('main.pages.404', [
             ]);

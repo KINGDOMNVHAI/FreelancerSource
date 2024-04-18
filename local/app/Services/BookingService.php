@@ -66,10 +66,19 @@ class BookingService extends ServiceProvider
 
     public function getBookingDetail($id)
     {
-        $query = DB::table('booking_detail')->join('products', 'products.id_product', '=', 'booking_detail.id_product')
+        $query = DB::table('booking')->join('booking_detail', 'booking.id_booking', '=', 'booking_detail.id_booking')
+            ->join('products', 'products.id_product', '=', 'booking_detail.id_product')
             ->select('products.id_product'
             ,'products.name_product'
             ,'products.thumbnail_product'
+
+            , 'booking.shipping'
+            , 'booking.amount_net'
+            , 'booking.booking_status'
+            , 'booking.fullname'
+            , 'booking.phone'
+            , 'booking.email'
+            , 'booking.address'
 
             , 'booking_detail.id_booking'
             , 'booking_detail.quantity'
@@ -84,6 +93,15 @@ class BookingService extends ServiceProvider
 
     public function getListBookingPaginate()
     {
-        return Booking::where('booking_status', '=', BOOKING_STATUS_NEW)->orderBy('created_at', 'desc')->paginate();
+        $bookingStatus = BOOKING_STATUS_NEW;
+
+        return DB::table('booking')
+        ->select(
+            'booking.*'
+        )->paginate();
+
+        // return Booking::where('booking_status', '=', $bookingStatus)
+        //             ->orderBy('created_at', 'desc')
+        //             ->paginate();
     }
 }

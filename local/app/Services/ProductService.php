@@ -16,19 +16,28 @@ class ProductService extends ServiceProvider
 
     }
 
-    public function getProduct($urlProduct)
+    // join('discount', 'products.id_product', '=', 'discount.id_product')
+    // join('category_product', 'category_product.id_cat_product', '=', 'products.id_product')
+    public function getProductByURL($urlProduct)
     {
         $result = [];
-        $result = Products::join('discount', 'products.id_product', '=', 'discount.id_product')
-            ->join('category_product', 'category_product.id_cat_product', '=', 'products.id_product')
-            ->where('enable_product', true)
-            ->where('url_product', $urlProduct)
+        $result = Products::where('products.enable_product', true)
+            ->where('products.url_product', '=', $urlProduct)
             ->first();
 
         if ($result != null) {
-            $result['result_discount'] = null;
-            if ($result['enable_discount'] == true && $result['type_discount'] == '%') {
-                $result['result_discount'] = $result['price_product'] - ($result['price_product'] * $result['price_discount'] / 100);
+            $discount = Products::join('discount', 'products.id_product', '=', 'discount.id_product')
+                ->where('products.url_product', '=', $urlProduct)
+                ->first();
+
+            if ($discount != null) {
+                $result['result_discount'] = null;
+                $result['enable_discount'] = $discount['enable_discount'];
+                $result['type_discount'] = $discount['type_discount'];
+
+                if ($result['enable_discount'] == true && $result['type_discount'] == '%') {
+                    $result['result_discount'] = $result['price_product'] - ($result['price_product'] * $result['price_discount'] / 100);
+                }
             }
         }
         return $result;
