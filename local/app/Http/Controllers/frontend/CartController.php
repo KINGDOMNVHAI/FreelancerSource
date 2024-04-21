@@ -47,7 +47,9 @@ class CartController extends Controller
     {
         $title = "Giỏ hàng" . config('type.main');
         $categoryService = new CategoryService;
+        $productService = new ProductService;
 
+        $listProductRandom = $productService->getProductRandom(LIMIT_6);
         $listCategories = $categoryService->listCategory(true);
 
         $arrayCart = $request->session()->get('arrayCart');
@@ -64,6 +66,7 @@ class CartController extends Controller
         return view('main.pages.cart-checkout', [
             'title' => $title,
             'listCategories' => $listCategories,
+            'listProductRandom' => $listProductRandom,
             'arrayCart' => $arrayCart,
             'total' => $total,
         ]);

@@ -76,9 +76,9 @@
                             <label class="col-md-1 col-form-label">Chuyên mục</label>
                             <div class="col-md-10">
                                 <div class="form-group">
-                                    <select class="selectpicker" name="id_cat_post" data-style="select-with-transition" data-size="7" tabindex="-98">
+                                    <select class="selectpicker" name="id_cat_product" data-style="select-with-transition" data-size="7" tabindex="-98">
                                         @foreach ($listcat as $cat)
-                                        <option value="{{ $cat->id_cat }}" <?php echo ($cat->id_cat == $model->id_cat_post) ? 'selected' : '' ?>>{{ $cat->name_cat }}</option>
+                                        <option value="{{ $cat->id_cat_product }}" <?php echo ($cat->id_cat_product == $model->id_cat_product) ? 'selected' : '' ?>>{{ $cat->name_cat_product }}</option>
                                         @endforeach
                                     </select>
                                 </div>

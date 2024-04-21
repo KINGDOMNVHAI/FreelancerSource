@@ -53,7 +53,7 @@ class ProductController extends Controller
             return view('main.pages.404', [
             ]);
         }
-        $listProductRandom = $productService->getProductRandom(config('limit.6'));
+        $listProductRandom = $productService->getProductRandom(LIMIT_6);
 
         // Get title from parent class
         $title = $productInfo['name_product'] . $this->title;

@@ -25,7 +25,7 @@
         <!-- Shop Product Start -->
         <div class="col-lg-9 col-md-12">
             <div class="row pb-3">
-                <div class="col-12 pb-1">
+                <!-- <div class="col-12 pb-1">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <div class="dropdown ml-4">
                             <button class="btn border dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 @foreach($searchProduct as $product)
                 <div class="col-lg-3 col-md-6 col-sm-12 pb-1">

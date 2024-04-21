@@ -116,9 +116,9 @@ class ProductService extends ServiceProvider
             $query = $query->where('products.name_product', 'like', $keyword);
         }
 
-        if ($filter['idCat'][0] != null) {
-            $query = $query->whereIn('category_product.id_cat_product', $filter['idCat'][0]);
-        }
+        // if ($filter['idCat'][0] != null) {
+        //     $query = $query->whereIn('category_product.id_cat_product', $filter['idCat'][0]);
+        // }
         if ($filter['minPrice'] != null) {
             $query = $query->where('products.price_product', '>=', $filter['minPrice']);
         }
@@ -171,7 +171,7 @@ class ProductService extends ServiceProvider
                 'price_product'     => $datas['price_product'],
                 'unit_product'      => $datas['unit_product'],
                 'thumbnail_product' => $fileName, // Lấy tên file
-                'id_cat_post'       => $datas['id_cat_post'],
+                'id_cat_product'    => $datas['id_cat_product'],
                 'enable_product'    => $datas['enable'],
             ]);
         }
@@ -188,7 +188,7 @@ class ProductService extends ServiceProvider
                 'price_product'     => $datas['price_product'],
                 'unit_product'      => $datas['unit_product'],
                 'thumbnail_product' => $fileName,
-                // 'id_cat_post'     => $datas['id_cat_post'],
+                'id_cat_product'    => $datas['id_cat_product'],
                 'enable_product'    => $datas['enable'],
             ]);
         }

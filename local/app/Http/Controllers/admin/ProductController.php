@@ -33,7 +33,7 @@ class ProductController extends Controller
                 'keyword' => $request->keyword,
                 'minPrice' => $request->minPrice,
                 'maxPrice' => $request->maxPrice,
-                'idCat' => $arrIdCat,
+                // 'idCat' => $arrIdCat,
             ];
             if ($request->minPrice == null) {
                 $filter['minPrice'] = 0;
