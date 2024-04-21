@@ -126,11 +126,11 @@ class UserService extends ServiceProvider
                 'email' => $request->email,
                 'city' => $request->city,
                 'address' => $request->address,
-                'company' => $request->company,
-                'facebook' => $request->facebook,
-                'twitter' => $request->twitter,
-                'description' => $request->description,
-                'signature' => $request->signature,
+                // 'company' => $request->company,
+                // 'facebook' => $request->facebook,
+                // 'twitter' => $request->twitter,
+                // 'description' => $request->description,
+                // 'signature' => $request->signature,
                 'avatar' => $fileNameAvatar, // Lấy tên file
                 'banner' => $fileNameBanner, // Lấy tên file
             ]);

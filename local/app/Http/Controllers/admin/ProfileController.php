@@ -18,8 +18,9 @@ class ProfileController extends Controller
         {
             $fields = [
                 'id', 'lastname', 'firstname', 'username', 'password',
-                'email', 'role', 'city', 'address', 'company',
-                'facebook', 'twitter', 'description', 'signature', 'banner', 'avatar',
+                'email', 'role', 'city', 'address',
+                // 'company', 'facebook', 'twitter', 'description', 'signature',
+                'banner', 'avatar',
             ];
 
             $userProfile = new UserService;
@@ -47,8 +48,9 @@ class ProfileController extends Controller
         {
             $fields = [
                 'id', 'lastname', 'firstname', 'username', 'password',
-                'email', 'role', 'city', 'address', 'company',
-                'facebook', 'twitter', 'description', 'signature', 'banner', 'avatar',
+                'email', 'role', 'city', 'address',
+                // 'company', 'facebook', 'twitter', 'description', 'signature',
+                'banner', 'avatar',
             ];
 
             $userProfile = new UserService;

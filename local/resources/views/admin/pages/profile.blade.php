@@ -66,14 +66,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <label class="col-md-1 col-form-label">Về bản thân</label>
                             <div class="col-md-10">
                                 <div class="form-group">
                                     <textarea name="description" class="form-control" placeholder="Description" rows="4" cols="50" required>{{ $user->description }}</textarea>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row" style="margin-top:5px">
                             <label class="col-md-1 col-form-label">Avatar</label>
                             <div class="col-md-10 col-sm-10">

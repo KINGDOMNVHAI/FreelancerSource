@@ -95,9 +95,9 @@ class RegisterController extends Controller
             'email'     => $request->email,
             'city'      => $request->city,
             'address'   => $request->address,
-            'company'   => $request->company,
-            'facebook'  => $request->facebook,
-            'twitter'   => $request->twitter,
+            // 'company'   => $request->company,
+            // 'facebook'  => $request->facebook,
+            // 'twitter'   => $request->twitter,
         ];
 
         $rules = [
@@ -151,9 +151,9 @@ class RegisterController extends Controller
             'role'      => ROLE_MEMBER,
             'city'      => $city,
             'address'   => $address,
-            'company'   => $company,
-            'facebook'  => $facebook,
-            'twitter'   => $twitter,
+            // 'company'   => $company,
+            // 'facebook'  => $facebook,
+            // 'twitter'   => $twitter,
         ]);
 
         // After insert, back to previous page
