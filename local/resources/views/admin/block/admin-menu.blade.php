@@ -1,13 +1,13 @@
-<!-- <li class="nav-item ">
-    <a class="nav-link" data-toggle="collapse" href="#productExamples">
+<li class="nav-item ">
+    <a class="nav-link" data-toggle="collapse" href="#postExamples">
         <i class="material-icons">widgets</i>
         <p> BÀI VIẾT
             <b class="caret"></b>
         </p>
     </a>
-    <div class="collapse" id="productExamples">
+    <div class="collapse" id="postExamples">
         <ul class="nav">
-            <li class="nav-item <?= ($_SERVER['REQUEST_URI'] == '/post-list' ) ? 'active' : '' ?>">
+            <li class="nav-item    ">
                 <a class="nav-link" href="{{ route('post-index') }}">
                     <i class="material-icons">content_paste</i>
                     <span class="sidebar-normal"> DANH SÁCH BÀI VIẾT </span>
@@ -21,7 +21,38 @@
             </li>
         </ul>
     </div>
-</li> -->
+</li>
+
+<li class="nav-item ">
+    <a class="nav-link" data-toggle="collapse" href="#categoryExamples">
+        <i class="material-icons">category</i>
+        <p> CHUYÊN MỤC
+            <b class="caret"></b>
+        </p>
+    </a>
+    <div class="collapse" id="categoryExamples">
+        <ul class="nav">
+            <li class="nav-item <?= ($_SERVER['REQUEST_URI'] == '/category-index' ) ? 'active' : '' ?>">
+                <a class="nav-link" href="{{ route('category-index') }}">
+                    <i class="material-icons">content_paste</i>
+                    <span class="sidebar-normal"> DANH SÁCH CHUYÊN MỤC</span>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ route('category-insert') }}">
+                    <i class="material-icons">info</i>
+                    <span class="sidebar-normal"> TẠO CHUYÊN MỤC</span>
+                </a>
+            </li>
+            <li class="nav-item <?= ($_SERVER['REQUEST_URI'] == '/category-list-deteled' ) ? 'active' : '' ?>">
+                <a class="nav-link" href="{{ route('category-list-deteled') }}">
+                    <i class="material-icons">recycling</i>
+                    <span class="sidebar-normal"> CHUYÊN MỤC ĐÃ XÓA</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>
 
 <li class="nav-item ">
     <a class="nav-link" data-toggle="collapse" href="#productExamples">
@@ -39,7 +70,7 @@
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="{{ route('product-insert-update') }}">
+                <a class="nav-link" href="{{ route('product-insert') }}">
                     <i class="material-icons">info</i>
                     <span class="sidebar-normal"> TẠO SẢN PHẨM </span>
                 </a>
@@ -67,11 +98,23 @@
     </div>
 </li>
 
-<!-- <li class="nav-item">
-    <a class="nav-link" href="route('api-social-network-index')">
-        <i class="material-icons">live_tv</i>
-        <p> API SOCIAL NETWORK </p>
+<!-- <li class="nav-item ">
+    <a class="nav-link" data-toggle="collapse" href="#shipperExamples">
+        <i class="material-icons">pedal_bike</i>
+        <p> SHIPPER
+            <b class="caret"></b>
+        </p>
     </a>
+    <div class="collapse" id="shipperExamples">
+        <ul class="nav">
+            <li class="nav-item <?= ($_SERVER['REQUEST_URI'] == '/booking-list' ) ? 'active' : '' ?>">
+                <a class="nav-link" href="{{ route('booking-index') }}">
+                    <i class="material-icons">person_search</i>
+                    <span class="sidebar-normal"> DANH SÁCH SHIPPER </span>
+                </a>
+            </li>
+        </ul>
+    </div>
 </li> -->
 
 <li class="nav-item">
@@ -89,12 +132,7 @@
                     <span class="sidebar-normal"> THÔNG TIN CÁ NHÂN </span>
                 </a>
             </li>
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="route('security')">
-                    <i class="material-icons">security</i>
-                    <span class="sidebar-normal"> BẢO MẬT </span>
-                </a>
-            </li> -->
+            
         </ul>
     </div>
 </li>

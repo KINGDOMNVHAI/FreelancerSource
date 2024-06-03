@@ -22,7 +22,7 @@
                     <div class="card-body row">
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type="text" name="name_post" id="name_post" class="form-control" placeholder="Tên bài viết">
+                                <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Tên chuyên mục">
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -77,7 +77,6 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card-body">
-                    <a href=""></a>
                     <!-- <button class="btn btn-info" onclick="window.location = '/san-pham/danh-sach-san-pham-da-xoa';">Xóa nhiều bài viết</button>
                     
                     <button class="btn btn-success">Success</button>
@@ -91,53 +90,36 @@
                         <div class="card-icon">
                             <i class="material-icons">assignment</i>
                         </div>
-                        <h4 class="card-title ">Danh sách bài viết</h4>
+                        <h4 class="card-title ">Danh sách chuyên mục</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class=" text-primary">
                                     <tr>
-                                        <th class="text-center" style="width: 5%">Checkbox</th>
-                                        <th class="text-center" style="width: 10%">Thumbnail</th>
-                                        <th style="width: 25%">Tiêu đề</th>
-                                        <th class="text-center" style="width: 30%">Giới thiệu</th>
-                                        <th class="th-description" style="width: 10%">Chuyên mục</th>
-                                        <th class="th-description" style="width: 10%">Ngày đăng</th>
-                                        <th style="width: 10%">Xóa</th>
+                                        <!-- <th class="text-center" style="width: 5%">Checkbox</th> -->
+                                        <th>Tiêu đề</th>
+                                        <th class="text-center" style="width: 20%">URL</th>
+                                        <th class="text-center" style="width: 10%">Hoạt động</th>
+                                        <th>Chỉnh sửa</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($posts as $post)
+                                    @foreach ($categories as $category)
                                     <tr>
-                                        <td><center><input type="checkbox" name="checkbox{{ $post->thumbnail_post }}" ></center></td>
-                                        <td class="text-center">
-                                            @if (strlen($post->thumbnail_post) <= 4)
-                                            <div class="img-container">
-                                                <img src="{{ asset('upload/images/thumbnail/logo-default.jpg') }}" alt="...">
-                                            </div>
-                                            @else
-                                            <div class="img-container">
-                                                <img src="upload/images/thumbnail/posts/{{ $post->thumbnail_post }}" alt="{{ $post->name_post }}">
-                                            </div>
-                                            @endif
-                                        </td>
-                                        <td>{{ $post->name_post }}</td>
-                                        <td>{{ $post->present_post }}</td>
-                                        <td>
-                                            <select class="selectpicker" name="id_category" id="id_category{{$post->id_post}}" data-style="select-with-transition" title="{{ $post->name_cat_post }}" data-size="7" tabindex="-98">
-                                                @foreach($categories as $category)
-                                                <option value="{{ $category->id_cat_post }}">{{ $category->name_cat_post }}</option>
-                                                @endforeach
-                                            </select>
-                                            <button onclick="edit_category_ajax({{$post->id_post}})">Submit</button>
-                                        </td>
-                                        <td>{{ date('d-m-Y', strtotime($post->date_post)) }}</td>
+                                        <!-- <td><center><input type="checkbox" name="checkbox{{ $category->id_cat }}" ></center></td> -->
+                                        <td>{{ $category->name_cat }}</td>
+                                        <td class="text-center">{{ $category->url_cat }}</td>
+                                        @if ($category->enable_cat == 1)
+                                        <td class="text-center">Hoạt động</td>
+                                        @else
+                                        <td class="text-center">Không hoạt động</td>
+                                        @endif
                                         <td class="td-actions">
-                                            <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" onclick="window.location = '{{ route('post-update', $post->url_post) }}'">
+                                            <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" onclick="window.location = '{{ route('category-update', $category->id_cat) }}'">
                                                 <i class="material-icons">edit</i>
                                             </button>
-                                            <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" onclick="window.location = '/fastfood/post-delete/' + {{ $post->id_post }}">
+                                            <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" onclick="window.location = '/fastfood/category-delete/' + {{ $category->id_cat }}">
                                                 <i class="material-icons">close</i>
                                                 <div class="ripple-container"></div>
                                             </button>
@@ -151,7 +133,7 @@
 
             </div>
         </div>
-        {!! $posts->links('pagination::bootstrap-4') !!}
+        {!! $categories->links('pagination::bootstrap-4') !!}
     </div>
 </div>
 

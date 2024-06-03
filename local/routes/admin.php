@@ -11,13 +11,21 @@ Route::get('/dashboard', 'Admin\DashboardController@index')->name('dashboard');
 
 // ======================= Categories =======================
 
-Route::get('/categories', 'Admin\CategoryController@indexList')->name('categories');
+Route::get('/category-list', 'Admin\CategoryController@index')->name('category-index');
+
+Route::get('/category-list-deteled', 'Admin\CategoryController@listDeteled')->name('category-list-deteled');
 
 Route::get('/category/{urlCat}', 'Admin\CategoryController@detail')->name('category-detail');
 
-Route::get('/categories-update', 'Admin\CategoryController@indexList')->name('categories-list-update');
+Route::get('/category-insert', 'Admin\CategoryController@categoryInsert')->name('category-insert');
 
-Route::get('/categories-delete/{idCat}', 'Admin\CategoryController@delete')->name('categories-delete');
+Route::get('/category-update/{idCat}', 'Admin\CategoryController@categoryUpdate')->name('category-update');
+
+Route::post('/category-insert-update/{idCat}', 'Admin\CategoryController@categoryInsertUpdate')->name('category-insert-update');
+
+Route::get('/category-delete/{idCat}', 'Admin\CategoryController@categoryDelete')->name('category-delete');
+
+Route::get('/category-return/{idCat}', 'Admin\CategoryController@categoryReturn')->name('category-return');
 
 // ======================= Posts =======================
 
@@ -25,11 +33,11 @@ Route::get('/post-list', 'Admin\PostController@index')->name('post-index');
 
 Route::post('/posts-change-category-ajax', 'Admin\PostController@changeCategoryAjax')->name('posts-change-category-ajax');
 
-Route::match(['GET', 'POST'], '/post-insert-update/{id?}', 'Admin\PostController@postInsertUpdate')->name('post-insert-update');
+Route::get('/post-insert', 'Admin\PostController@postInsert')->name('post-insert');
 
-// Route::post('/posts-insert', 'Admin\PostController@insert')->name('posts-insert');
+Route::get('/post-update/{urlPost}', 'Admin\PostController@postUpdate')->name('post-update');
 
-// Route::get('/posts-update/{idDetailPost}', 'Admin\PostController@indexUpdate')->name('posts-list-update');
+Route::post('/post-insert-update/{idPost}', 'Admin\PostController@postInsertUpdate')->name('post-insert-update');
 
 // Route::post('/posts-updated/{idDetailPost}', 'Admin\PostController@update')->name('posts-update');
 
@@ -43,17 +51,19 @@ Route::post('/posts-many-image', 'Admin\PostController@updateManyImage')->name('
 
 // ======================= Product =======================
 
-Route::match(['GET', 'POST'], '/product-list', 'Admin\ProductController@index')->name('product-index');
+Route::get('/product-list', 'Admin\ProductController@index')->name('product-index');
 
 Route::match(['GET', 'POST'], '/product-insert-update/{id?}', 'Admin\ProductController@productInsertUpdate')->name('product-insert-update');
 
+Route::get('/product-insert/', 'Admin\ProductController@productInsert')->name('product-insert');
+
+Route::get('/product-delete/{id}', 'Admin\ProductController@productDelete')->name('product-delete');
+
 // ======================= Booking =======================
 
-Route::match(['GET', 'POST'], '/booking-list', 'Admin\BookingController@index')->name('booking-index');
+Route::get('/booking-list', 'Admin\BookingController@index')->name('booking-index');
 
 Route::get('/booking-detail/{idBooking}', 'Admin\BookingController@detail')->name('booking-detail');
-
-Route::get('/change-status/{idBooking}/{status}', 'Admin\BookingController@changeStatus')->name('booking-change-status');
 
 // ======================= Channels =======================
 
@@ -109,10 +119,10 @@ Route::post('/api-social-network-twitter', 'Admin\APISocialNetworkController@upd
 
 // ======================= Security =======================
 
-// Route::get('/security', 'Admin\SecurityController@index')->name('security');
+Route::get('/security', 'Admin\SecurityController@index')->name('security');
 
-// Route::post('/security-update', 'Admin\SecurityController@update')->name('security-update');
+Route::post('/security-update', 'Admin\SecurityController@update')->name('security-update');
 
 // ======================= Administrator =======================
 
-// Route::get('/administrator', 'Admin\AdministratorController@index')->name('administrator');
+Route::get('/administrator', 'Admin\AdministratorController@index')->name('administrator');
