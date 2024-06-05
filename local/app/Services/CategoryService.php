@@ -26,6 +26,21 @@ class CategoryService extends ServiceProvider
         return $query->get();
     }
 
+    public function listCategoryCheckParent($paginate, $enable, $parent)
+    {
+        $query = CategoryProduct::where('enable_cat_product', '=', $enable);
+
+        if ($parent == true) {
+            $query = $query->where('id_parent', '=', 0);
+        } else {
+            $query = $query->where('id_parent', '!=', 0);
+        }
+        if ($paginate == true) {
+            return $query->paginate(LIMIT_12);
+        }
+        return $query->get();
+    }
+
     public function listCategoryHaveCountProduct()
     {
         return CategoryProduct::join('products', 'products.id_cat_product', '=', 'category_product.id_cat_product')

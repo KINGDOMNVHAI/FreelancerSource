@@ -26,7 +26,7 @@
 <li class="nav-item ">
     <a class="nav-link" data-toggle="collapse" href="#categoryExamples">
         <i class="material-icons">category</i>
-        <p> CHUYÊN MỤC
+        <p>THỂ LOẠI
             <b class="caret"></b>
         </p>
     </a>
@@ -35,19 +35,19 @@
             <li class="nav-item <?= ($_SERVER['REQUEST_URI'] == '/category-index' ) ? 'active' : '' ?>">
                 <a class="nav-link" href="{{ route('category-index') }}">
                     <i class="material-icons">content_paste</i>
-                    <span class="sidebar-normal"> DANH SÁCH CHUYÊN MỤC</span>
+                    <span class="sidebar-normal"> DANH SÁCHTHỂ LOẠI</span>
                 </a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="{{ route('category-insert') }}">
                     <i class="material-icons">info</i>
-                    <span class="sidebar-normal"> TẠO CHUYÊN MỤC</span>
+                    <span class="sidebar-normal"> TẠOTHỂ LOẠI</span>
                 </a>
             </li>
             <li class="nav-item <?= ($_SERVER['REQUEST_URI'] == '/category-list-deteled' ) ? 'active' : '' ?>">
                 <a class="nav-link" href="{{ route('category-list-deteled') }}">
                     <i class="material-icons">recycling</i>
-                    <span class="sidebar-normal"> CHUYÊN MỤC ĐÃ XÓA</span>
+                    <span class="sidebar-normal">THỂ LOẠI ĐÃ XÓA</span>
                 </a>
             </li>
         </ul>
