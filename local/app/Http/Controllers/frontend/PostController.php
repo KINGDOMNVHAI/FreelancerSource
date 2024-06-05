@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Services\CartService;
 use App\Services\CategoryService;
 use App\Services\PostService;
 use Illuminate\Http\Request;
@@ -16,27 +17,35 @@ class PostController extends Controller
         $this->title = " | Nhà thuốc ";
     }
 
-    public function blog($idCat)
+    public function blog(Request $request, $idCat)
     {
-        $title = 'Bài viết' . config('type.main');
+        $cartService = new CartService;
         $categoryService = new CategoryService;
+        $postService = new PostService;
+
+        $title = 'Bài viết' . config('type.main');
 
         $listCategories = $categoryService->listCategory(true);
 
-        $postService = new PostService;
         $listPost = $postService->getListPost(config('limit.6'), false);
         $listRandomPost = $postService->getListRandomPost(config('limit.6'), false);
+
+        $arrayCart = $request->session()->get('arrayCart');
+        $total = $cartService->getTotal($request, $arrayCart);
 
         return view('main.pages.blog', [
             'title' => $title ,
             'listCategories' => $listCategories,
             'listPost' => $listPost,
             'listRandomPost' => $listRandomPost,
+            'arrayCart' => $arrayCart,
+            'total' => $total,
         ]);
     }
 
-    public function post($urlPost)
+    public function post(Request $request, $urlPost)
     {
+        $cartService = new CartService;
         $categoryService = new CategoryService;
         $postService = new PostService;
 
@@ -47,6 +56,9 @@ class PostController extends Controller
 
         $title = $post->name_post . config('type.main');
 
+        $arrayCart = $request->session()->get('arrayCart');
+        $total = $cartService->getTotal($request, $arrayCart);
+
         return view('main.pages.post', [
             'title' => $title ,
             'listCategories' => $listCategories,
@@ -54,6 +66,8 @@ class PostController extends Controller
             'post' => $post,
             'ogImagePost' => $post->thumbnail_post,
             'ogDescriptionPost' => $post->present_post,
+            'arrayCart' => $arrayCart,
+            'total' => $total,
         ]);
     }
 }

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Services\CartService;
 use App\Services\CategoryService;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
@@ -16,34 +17,32 @@ class ProductController extends Controller
         $this->title = " | Nhà thuốc ";
     }
 
-    public function listProductCategory($urlCat)
+    public function listProductCategory(Request $request, $urlCat)
     {
+        $cartService = new CartService;
         $categoryService = new CategoryService;
-        $listCategories = $categoryService->listCategory(true);
-
         $productService = new ProductService;
+
+        $listCategories = $categoryService->listCategory(true);
         // $productNewest = $productService->getListNewestPost(NEWEST_HOME_POSTS, null, true, $this->language);
         // $productUpdate = $productService->getListUpdatedPost(UPDATED_HOME_POSTS, null, $this->language);
         // $productRandom = $productService->getListRandomPost(RECENT_HOME_POSTS, $this->language);
 
+        $arrayCart = $request->session()->get('arrayCart');
+        $total = $cartService->getTotal($request, $arrayCart);
 
         return view('main.pages.category', [
             'title'          => $title ,
-
-            // Public Services
             'categories'     => $this->viewCategories,
             'listCategories' => $listCategories,
-            // 'updates'        => $productUpdate,
-            // 'randoms'        => $productRandom,
-            // 'viewTags'       => $this->viewTags,
-
-            // Private Services
-            // 'listpost'       => $viewListPost,
+            'arrayCart'      => $arrayCart,
+            'total'          => $total,
         ]);
     }
 
-    public function detailProduct($urlProduct)
+    public function detailProduct(Request $request, $urlProduct)
     {
+        $cartService = new CartService;
         $categoryService = new CategoryService;
         $productService = new ProductService;
 
@@ -60,6 +59,9 @@ class ProductController extends Controller
 
         $listCategories = $categoryService->listCategory(true);
 
+        $arrayCart = $request->session()->get('arrayCart');
+        $total = $cartService->getTotal($request, $arrayCart);
+
         return view('main.pages.product', [
             'title' => $title,
             'product' => $productInfo,
@@ -67,6 +69,8 @@ class ProductController extends Controller
             'listCategories' => $listCategories,
             'ogImageProduct' => $productInfo->thumbnail_product,
             'ogDescriptionProduct' => $productInfo->info_product,
+            'arrayCart' => $arrayCart,
+            'total' => $total,
         ]);
     }
 }

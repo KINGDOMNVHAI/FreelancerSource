@@ -46,6 +46,7 @@ class CartController extends Controller
     public function checkout(Request $request)
     {
         $title = "Giỏ hàng" . config('type.main');
+        $cartService = new CartService;
         $categoryService = new CategoryService;
         $productService = new ProductService;
 
@@ -53,15 +54,7 @@ class CartController extends Controller
         $listCategories = $categoryService->listCategory(true);
 
         $arrayCart = $request->session()->get('arrayCart');
-        $total = $request->session()->get('total');
-        if ($total == null) {
-            $total = 0;
-            if ($arrayCart != null && count($arrayCart) > 0) {
-                foreach($arrayCart as $cart) {
-                    $total = $total + $cart['price_product'] * $cart['quantity'];
-                }
-            }
-        }
+        $total = $cartService->getTotal($request, $arrayCart);
 
         return view('main.pages.cart-checkout', [
             'title' => $title,
@@ -132,6 +125,8 @@ class CartController extends Controller
             'listCategories' => $listCategories,
             'infoBooking' => $infoBooking,
             'listProduct' => $listProduct,
+            'arrayCart' => [],
+            'total' => 0,
         ]);
     }
 }

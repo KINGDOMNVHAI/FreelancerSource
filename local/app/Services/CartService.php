@@ -12,6 +12,20 @@ class CartService extends ServiceProvider
 
     }
 
+    public function getTotal(Request $request, $arrayCart)
+    {
+        $total = $request->session()->get('total');
+        if ($total == null) {
+            $total = 0;
+            if ($arrayCart != null && count($arrayCart) > 0) {
+                foreach($arrayCart as $cart) {
+                    $total = $total + $cart['price_product'];
+                }
+            }
+        }
+        return $total;
+    }
+
     public function setProductToCart(Request $request, $product, $quantity)
     {
         $total = 0;

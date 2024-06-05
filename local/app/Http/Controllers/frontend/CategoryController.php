@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Services\CartService;
 use App\Services\CategoryService;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
@@ -16,8 +17,9 @@ class CategoryController extends Controller
 
     }
 
-    public function index($urlCat)
+    public function index(Request $request, $urlCat)
     {
+        $cartService = new CartService;
         $categoryService = new CategoryService;
         $productService = new ProductService;
 
@@ -33,21 +35,28 @@ class CategoryController extends Controller
 
         $title = $detailCategory->name_cat . config('type.main');
 
+        $arrayCart = $request->session()->get('arrayCart');
+        $total = $cartService->getTotal($request, $arrayCart);
+
         return view('main.pages.category', [
             'title' => $title,
             'listCategories' => $listCategories,
             'listCategoriesCount' => $listCategoriesCount,
             'detailCategory' => $detailCategory,
             'productCategory' => $productCategory,
-            'notFound' => $notFound
+            'notFound' => $notFound,
+            'arrayCart' => $arrayCart,
+            'total' => $total,
         ]);
     }
 
     public function search(Request $request)
     {
-        $title = 'Tìm kiếm' . config('type.main');
+        $cartService = new CartService;
         $categoryService = new CategoryService;
         $productService = new ProductService;
+
+        $title = 'Tìm kiếm' . config('type.main');
 
         $listCategories = $categoryService->listCategory(true);
         $listCategoriesCount = $categoryService->listCategoryHaveCountProduct();
@@ -87,6 +96,9 @@ class CategoryController extends Controller
             $notFound = false;
         }
 
+        $arrayCart = $request->session()->get('arrayCart');
+        $total = $cartService->getTotal($request, $arrayCart);
+
         return view('main.pages.category-search', [
             'title' => $title,
             'keyword' => $filter['keyword'],
@@ -95,7 +107,9 @@ class CategoryController extends Controller
             'listCategories' => $listCategories,
             'listCategoriesCount' => $listCategoriesCount,
             'searchProduct' => $searchProduct,
-            'notFound' => $notFound
+            'notFound' => $notFound,
+            'arrayCart' => $arrayCart,
+            'total' => $total,
         ]);
     }
 }
