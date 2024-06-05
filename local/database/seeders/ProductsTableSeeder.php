@@ -31,6 +31,8 @@ class ProductsTableSeeder extends Seeder
             'id_cat_product' => CATEGORY_KINH_TE,
             'enable_product' => 1,
             'price_product' => 75000,
+            'id_author' => 1,
+            'id_dis' => 1,
             'unit_product' => 'Quyển',
             'popular' => 1,
         ]);
@@ -58,6 +60,8 @@ class ProductsTableSeeder extends Seeder
             'id_cat_product' => CATEGORY_KINH_TE,
             'enable_product' => 1,
             'price_product' => 89000,
+            'id_author' => 1,
+            'id_dis' => 1,
             'unit_product' => 'Quyển',
             'popular' => 1,
         ]);
@@ -85,6 +89,8 @@ class ProductsTableSeeder extends Seeder
             'id_cat_product' => CATEGORY_KINH_TE,
             'enable_product' => 1,
             'price_product' => 160000,
+            'id_author' => 1,
+            'id_dis' => 1,
             'unit_product' => 'Quyển',
             'popular' => 1,
         ]);
@@ -112,6 +118,8 @@ class ProductsTableSeeder extends Seeder
             'id_cat_product' => CATEGORY_KINH_TE,
             'enable_product' => 1,
             'price_product' => 120000,
+            'id_author' => 1,
+            'id_dis' => 1,
             'unit_product' => 'Quyển',
             'popular' => 1,
         ]);
@@ -139,6 +147,8 @@ class ProductsTableSeeder extends Seeder
             'id_cat_product' => CATEGORY_KINH_TE,
             'enable_product' => 1,
             'price_product' => 185000,
+            'id_author' => 1,
+            'id_dis' => 1,
             'unit_product' => 'Quyển',
             'popular' => 1,
         ]);
@@ -183,6 +193,8 @@ class ProductsTableSeeder extends Seeder
             'id_cat_product' => CATEGORY_KINH_TE,
             'enable_product' => 1,
             'price_product' => 190000,
+            'id_author' => 1,
+            'id_dis' => 1,
             'unit_product' => 'Quyển',
             'popular' => 1,
         ]);
@@ -211,6 +223,8 @@ class ProductsTableSeeder extends Seeder
             'id_cat_product' => CATEGORY_KINH_TE,
             'enable_product' => 1,
             'price_product' => 255000,
+            'id_author' => 1,
+            'id_dis' => 1,
             'unit_product' => 'Quyển',
             'popular' => 1,
         ]);
@@ -238,6 +252,8 @@ class ProductsTableSeeder extends Seeder
             'id_cat_product' => CATEGORY_KINH_TE,
             'enable_product' => 1,
             'price_product' => 100000,
+            'id_author' => 1,
+            'id_dis' => 2,
             'unit_product' => 'Quyển',
             'popular' => 1,
         ]);
@@ -265,6 +281,8 @@ class ProductsTableSeeder extends Seeder
             'id_cat_product' => CATEGORY_KINH_TE,
             'enable_product' => 1,
             'price_product' => 40000,
+            'id_author' => 1,
+            'id_dis' => 2,
             'unit_product' => 'Quyển',
             'popular' => 1,
         ]);
@@ -294,6 +312,8 @@ class ProductsTableSeeder extends Seeder
             'id_cat_product' => CATEGORY_MANGA,
             'enable_product' => 1,
             'price_product' => 75000,
+            'id_author' => 1,
+            'id_dis' => 2,
             'unit_product' => 'Quyển',
             'popular' => 1,
         ]);
@@ -323,6 +343,8 @@ class ProductsTableSeeder extends Seeder
             'id_cat_product' => CATEGORY_MANGA,
             'enable_product' => 1,
             'price_product' => 75000,
+            'id_author' => 1,
+            'id_dis' => 2,
             'unit_product' => 'Quyển',
             'popular' => 1,
         ]);
@@ -352,6 +374,8 @@ class ProductsTableSeeder extends Seeder
             'id_cat_product' => CATEGORY_VAN_PHONG_PHAM,
             'enable_product' => 1,
             'price_product' => 75000,
+            'id_author' => 1,
+            'id_dis' => 1,
             'unit_product' => 'Quyển',
             'popular' => 1,
         ]);
@@ -379,6 +403,8 @@ class ProductsTableSeeder extends Seeder
             'id_cat_product' => CATEGORY_VAN_PHONG_PHAM,
             'enable_product' => 1,
             'price_product' => 75000,
+            'id_author' => 1,
+            'id_dis' => 2,
             'unit_product' => 'Quyển',
             'popular' => 1,
         ]);

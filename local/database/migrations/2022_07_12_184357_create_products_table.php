@@ -28,6 +28,8 @@ class CreateProductsTable extends Migration
             $table->string('img_product_3')->nullable();
             $table->string('img_product_4')->nullable();
             $table->integer('price_product');
+            $table->integer('id_author');
+            $table->integer('id_dis');
             $table->string('unit_product');
             $table->boolean('enable_product')->default(false);
             $table->boolean('popular')->default(false);
