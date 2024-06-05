@@ -14,7 +14,7 @@
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="{{ route('post-insert-update') }}">
+                <a class="nav-link" href="{{ route('post-insert') }}">
                     <i class="material-icons">info</i>
                     <span class="sidebar-normal"> TẠO BÀI VIẾT </span>
                 </a>
@@ -132,7 +132,7 @@
                     <span class="sidebar-normal"> THÔNG TIN CÁ NHÂN </span>
                 </a>
             </li>
-            
+
         </ul>
     </div>
 </li>
