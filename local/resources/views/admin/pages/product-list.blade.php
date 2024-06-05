@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <form method="POST" action="{{route('product-index')}}">
+                    <form method="GET" action="{{route('product-index')}}">
                     <div class="card-header card-header-rose card-header-text">
                         <div class="card-text">
                             <h4 class="card-title">Tìm sản phẩm</h4>
@@ -108,10 +108,10 @@
                                         <td>{{$product->price_product}}</td>
                                         <td>{{$product->name_cat_product}}</td>
                                         <td class="td-actions">
-                                            <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" onclick="window.location = '{{ route('product-insert-update', $product->id_product) }}'">
+                                            <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" onclick="window.location = '{{ route('product-update', $product->id_product) }}'">
                                                 <i class="material-icons">edit</i>
                                             </button>
-                                            <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" title="">
+                                            <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" onclick="window.location = '{{ route('product-delete', $product->id_product) }}'">
                                                 <i class="material-icons">close</i>
                                                 <div class="ripple-container"></div>
                                             </button>

@@ -2,7 +2,9 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\CategoryProduct;
 use App\Models\Products;
+use App\Services\AuthorService;
 use App\Services\CategoryService;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
@@ -52,14 +54,57 @@ class ProductController extends Controller
         }
     }
 
-    public function productInsertUpdate($id = null, Request $request)
+    public function productInsert()
+    {
+        $authorService = new AuthorService;
+        $categoryService = new CategoryService;
+        $productService = new ProductService;
+        if (Auth::check())
+        {
+            $model = new Products();
+            $listcat = $categoryService->listCategory(false, true);
+            $listAuthor = $authorService->listAuthor(false, true);
+
+            return view('admin.pages.product-insert', [
+                'model'  => $model,
+                'listAuthor'  => $listAuthor,
+                'listcat'  => $listcat,
+            ]);
+        }
+        else {
+            return redirect()->route('login');
+        }
+    }
+
+    public function productUpdate($idProduct)
+    {
+        $authorService = new AuthorService;
+        $categoryService = new CategoryService;
+        if (Auth::check())
+        {
+            $model = Products::find($idProduct);
+            $listcat = $categoryService->listCategory(false, true);
+            $listAuthor = $authorService->listAuthor(false, true);
+
+            return view('admin.pages.product-insert', [
+                'model'  => $model,
+                'listAuthor'  => $listAuthor,
+                'listcat'  => $listcat,
+            ]);
+        }
+        else {
+            return redirect()->route('login');
+        }
+    }
+
+    public function productInsertUpdate($idProduct, Request $request)
     {
         $categoryService = new CategoryService;
         $productService = new ProductService;
 
         if (Auth::check())
         {
-            $model = Products::find($id);
+            $model = Products::find($idProduct);
 
             // Show all category, except selected category
             $listcat = $categoryService->listCategory(false, true);
@@ -111,6 +156,19 @@ class ProductController extends Controller
             }
 
             return view('admin.pages.product-insert', compact('listcat','model'));
+        }
+        else {
+            return redirect()->route('login');
+        }
+    }
+
+    public function productDelete($id)
+    {
+        $productService = new ProductService();
+        if (Auth::check())
+        {
+            $productService->productChangeStatus($id, false);
+            return redirect()->route('product-index');
         }
         else {
             return redirect()->route('login');

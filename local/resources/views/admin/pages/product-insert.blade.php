@@ -85,6 +85,18 @@
                             </div>
                         </div>
                         <div class="row">
+                            <label class="col-md-1 col-form-label">Chuyên mục</label>
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <select class="selectpicker" name="id_author" data-style="select-with-transition" data-size="7" tabindex="-98">
+                                        @foreach ($listAuthor as $author)
+                                        <option value="{{ $author->id_author }}" <?php echo ($author->id_author == $model->id_author) ? 'selected' : '' ?>>{{ $author->name_author }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <label class="col-md-1 col-form-label">Nội dung mô tả</label>
                             <div class="col-md-10">
                                 <div class="form-group">

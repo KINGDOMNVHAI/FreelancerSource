@@ -53,9 +53,13 @@ Route::post('/posts-many-image', 'Admin\PostController@updateManyImage')->name('
 
 Route::get('/product-list', 'Admin\ProductController@index')->name('product-index');
 
-Route::match(['GET', 'POST'], '/product-insert-update/{id?}', 'Admin\ProductController@productInsertUpdate')->name('product-insert-update');
+Route::get('/product-insert', 'Admin\ProductController@productInsert')->name('product-insert');
 
-Route::get('/product-insert/', 'Admin\ProductController@productInsert')->name('product-insert');
+Route::get('/product-update/{idProduct}', 'Admin\ProductController@productUpdate')->name('product-update');
+
+Route::post('/product-insert-update/{idProduct}', 'Admin\ProductController@productInsertUpdate')->name('product-insert-update');
+
+// Route::match(['GET', 'POST'], '/product-insert-update/{id?}', 'Admin\ProductController@productInsertUpdate')->name('product-insert-update');
 
 Route::get('/product-delete/{id}', 'Admin\ProductController@productDelete')->name('product-delete');
 

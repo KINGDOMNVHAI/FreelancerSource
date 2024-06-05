@@ -2,9 +2,7 @@
 namespace App\Services;
 
 use Illuminate\Support\ServiceProvider;
-use App\Models\Categories;
 use App\Models\Discount;
-use App\Models\ProductCategory;
 use App\Models\Products;
 use App\Ultis\StringUltis;
 use DB;
@@ -175,6 +173,7 @@ class ProductService extends ServiceProvider
                 'unit_product'      => $datas['unit_product'],
                 'thumbnail_product' => $fileName, // Lấy tên file
                 'id_cat_product'    => $datas['id_cat_product'],
+                'id_author'         => $datas['id_author'],
                 'enable_product'    => $datas['enable'],
             ]);
         }
@@ -192,10 +191,18 @@ class ProductService extends ServiceProvider
                 'unit_product'      => $datas['unit_product'],
                 'thumbnail_product' => $fileName,
                 'id_cat_product'    => $datas['id_cat_product'],
+                'id_author'         => $datas['id_author'],
                 'enable_product'    => $datas['enable'],
             ]);
         }
 
         return $query;
+    }
+
+    public function productChangeStatus($idProduct, $status) {
+        Products::where('id_product', $idProduct)
+            ->update([
+                'enable_product' => $status,
+            ]);
     }
 }
