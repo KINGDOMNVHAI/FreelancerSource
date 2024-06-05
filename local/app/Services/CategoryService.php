@@ -40,6 +40,28 @@ class CategoryService extends ServiceProvider
             ->get();
     }
 
+    public function searchCategory($filter)
+    {
+        // idCat là một mảng nên dùng IN (1,2,3,4,5)
+        $query = CategoryProduct::where('category_product.enable_cat_product', '=', $filter['enable'])
+            ->select('category_product.id_cat_product',
+                'category_product.name_cat_product',
+                'category_product.url_cat_product',
+                'category_product.enable_cat_product',
+            )
+        ;
+
+        $keyword = null;
+        $stringUltis = new StringUltis();
+        if ($filter['keyword'] != null) {
+            $keyword = $stringUltis->removeSpecialCharacter($filter['keyword']);
+            $keyword = '%' . $keyword . '%';
+            $query = $query->where('category_product.name_cat_product', 'like', $keyword);
+        }
+
+        return $query->paginate(LIMIT_12);
+    }
+
     public function getCategory($urlCat)
     {
         return CategoryProduct::where('enable_cat_product', true)
@@ -48,62 +70,70 @@ class CategoryService extends ServiceProvider
     }
 
     /**
-     * Insert Walk-In Guest
      *
-     * @return array
+     *
+     * @return void
      */
-    public function insertWalkInGuest($request)
+    public function insertUpdate($datas, $request, $uploadPath)
     {
-        return WalkInGuest::insert([
-            'name_wig' => $request->fullname,
-            'country_wig' => $request->country,
-            'email_wig' => $request->email,
-            'phone_wig' => $request->phone,
-            'created_at' => DB::raw('CURRENT_TIMESTAMP'),
-            'updated_at' => DB::raw('CURRENT_TIMESTAMP')
-        ]);
+        // File name mặc định không có tên
+        // $fileName = '';
+
+        if ($request->hasFile('thumbnail'))
+        {
+            // Thư mục upload
+            // $uploadPath = public_path('upload/images/thumbnail');
+            $file = $request->file('thumbnail');
+
+            // File name được gắn tên
+            $fileName = $file->getClientOriginalName();
+
+            // Đưa file vào thư mục
+            $file->move(base_path($uploadPath), $fileName);
+        } else {
+            $fileName = $request->img;
+        }
+
+        // idUpdate là id sẽ nhập vào data
+        $idUpdate = $datas['id_cat'];
+
+        // Case 1: trường hợp Insert, id null
+        // Case 2: trường hợp Update, id có giá trị
+        if ($idUpdate == null || $idUpdate == 0)
+        {
+            $query = CategoryProduct::create([
+                'name_cat_product'       => $datas['name_cat'],
+                'url_cat_product'        => $datas['url_cat'],
+                // 'thumbnail_cat'  => $fileName, // Lấy tên file
+                'enable_cat_product'     => $datas['enable']
+            ]);
+        }
+        else
+        {
+            $query = CategoryProduct::where('id_cat_product', $idUpdate)
+            ->update([
+                'name_cat_product'       => $datas['name_cat'],
+                'url_cat_product'        => $datas['url_cat'],
+                // 'thumbnail_cat'  => $fileName,
+                'enable_cat_product'     => $datas['enable']
+            ]);
+        }
+
+        return $query;
     }
 
     /**
-     * Insert Customer
      *
-     * @return array
-     */
-    public function insertCustomer($request)
-    {
-        User::insert([
-            'firstname' => $request->cfFirstName,
-            'lastname' => $request->cfLastName,
-            'username' => $request->cfUsername,
-            'password' => md5($request->cfPassword),
-            'gender' => $request->cfGender,
-            'email' => $request->cfEmail,
-            'phone' => $request->cfPhone,
-            'country' => $request->cfCountry,
-            'address' => $request->cfAddress,
-            'enable_user' => true,
-
-            'facebook' => $request->cfFacebook,
-            'twitter' => $request->cfTwitter,
-            'linkedin' => $request->cfLinkedin,
-            'youtube' => $request->cfYouTube,
-
-            'created_at' => DB::raw('CURRENT_TIMESTAMP'),
-            'updated_at' => DB::raw('CURRENT_TIMESTAMP')
-        ]);
-    }
-
-    /**
-     * Insert User Links
      *
-     * @return array
+     * @return void
      */
-    public function insertUserLinks($id, $url)
+    public function changeEnable($idCat, $enable)
     {
-        UserLinks::insert([
-            'id_user' => $id,
-            'url_link' => $url,
-            'enable_link' => true
+        $query = CategoryProduct::where('id_cat_product', $idCat)
+        ->update([
+            'enable_cat_product' => $enable
         ]);
+
+        return $query;
     }
 }

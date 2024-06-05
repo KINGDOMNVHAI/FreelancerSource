@@ -19,6 +19,9 @@ class PostController extends Controller
     {
         if (Auth::check())
         {
+            $listCategory = new CategoryService;
+            $postService = new PostService;
+
             // Luôn luôn trong trạng thái lấy data từ các input trong form dù có search hay không
             $request = Request::capture();
             $params = [
@@ -30,10 +33,8 @@ class PostController extends Controller
                 'sort' => 'DESC'
             ];
 
-            $postService = new PostService;
             $viewPost = $postService->getListPostJoinCategoryPaginate($params);
 
-            $listCategory = new CategoryService;
             $viewCategory = $listCategory->listCategory(true);
 
             //Str::limit('The quick brown fox jumps over the lazy dog', 20, ' (...)');

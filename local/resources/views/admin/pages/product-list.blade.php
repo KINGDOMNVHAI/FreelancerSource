@@ -82,8 +82,9 @@
                                         <th class="text-center" style="width: 10%">ID sản phẩm</th>
                                         <th style="width: 20%">Thumbnail</th>
                                         <th style="width: 20%">Tên sản phẩm</th>
-                                        <th style="width: 20%">Giá</th>
-                                        <th class="th-description" style="width: 20%">Thể loại</th>
+                                        <th style="width: 15%">Tác giả</th>
+                                        <th style="width: 15%">Giá</th>
+                                        <th class="th-description" style="width: 10%">Thể loại</th>
                                         <th style="width: 10%">Xóa</th>
                                     </tr>
                                 </thead>
@@ -103,6 +104,7 @@
                                             @endif
                                         </td>
                                         <td>{{$product->name_product}}</td>
+                                        <td>{{$product->name_author}}</td>
                                         <td>{{$product->price_product}}</td>
                                         <td>{{$product->name_cat_product}}</td>
                                         <td class="td-actions">

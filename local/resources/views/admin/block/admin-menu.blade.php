@@ -1,4 +1,4 @@
-<li class="nav-item ">
+<!-- <li class="nav-item ">
     <a class="nav-link" data-toggle="collapse" href="#postExamples">
         <i class="material-icons">widgets</i>
         <p> BÀI VIẾT
@@ -21,7 +21,7 @@
             </li>
         </ul>
     </div>
-</li>
+</li> -->
 
 <li class="nav-item ">
     <a class="nav-link" data-toggle="collapse" href="#categoryExamples">
@@ -82,7 +82,7 @@
 <li class="nav-item ">
     <a class="nav-link" data-toggle="collapse" href="#bookingExamples">
         <i class="material-icons">add_shopping_cart</i>
-        <p> ĐẶT HÀNG
+        <p> ĐƠN HÀNG
             <b class="caret"></b>
         </p>
     </a>

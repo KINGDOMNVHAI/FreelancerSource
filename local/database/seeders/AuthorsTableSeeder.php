@@ -19,5 +19,12 @@ class AuthorsTableSeeder extends Seeder
             'phone_author' => '0123 456 789',
             'enable_author' => true,
         ]);
+
+        Authors::create([
+            'name_author' => "Tác giả B",
+            'email_author' => 'b@gmail.com',
+            'phone_author' => '0456 456 456',
+            'enable_author' => true,
+        ]);
     }
 }

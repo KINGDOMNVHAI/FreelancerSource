@@ -20,52 +20,14 @@
                         <h4 class="card-title">Tìm kiếm</h4>
                     </div>
                     <div class="card-body row">
-                        <div class="col-md-2">
+                        <div class="col-md-10">
                             <div class="form-group">
                                 <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Tên chuyên mục">
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="dropdown bootstrap-select show-tick">
-                                <select class="selectpicker" name="year" id="year" data-style="select-with-transition" title="Năm">
-                                    <option value="all">Tất cả năm</option>
-                                    @for($i=2015;$i<=$currentyear;$i++)
-                                    <option value="{{$i}}" <?php echo (isset($_GET['year']) && $_GET['year'] == $i) ? 'selected' : '' ?>>{{$i}}</option>
-                                    @endfor
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="dropdown bootstrap-select show-tick">
-                                <select class="selectpicker" name="month" id="month" data-style="select-with-transition" title="Tháng">
-                                    <option value="all">Tất cả tháng</option>
-                                    @for($i=1;$i<=12;$i++)
-                                    <option value="{{$i}}" <?php echo (isset($_GET['month']) && $_GET['month'] == $i) ? 'selected' : '' ?>>{{$i}}</option>
-                                    @endfor
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="dropdown bootstrap-select show-tick">
-                                <select class="selectpicker" name="newold" id="newold" data-style="select-with-transition" title="Mới / Cũ" data-size="7" tabindex="-98">
-                                    <option value="desc" <?php echo (isset($_GET['newold']) && $_GET['newold'] == 'desc') ? 'selected' : '' ?>>Mới nhất </option>
-                                    <option value="asc" <?php echo (isset($_GET['newold']) && $_GET['newold'] == 'asc') ? 'selected' : '' ?>>Cũ nhất</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="dropdown bootstrap-select show-tick">
-                                <select class="selectpicker" name="idCat" id="idCat" data-style="select-with-transition" title="Chuyên mục" data-size="7" tabindex="-98">
-                                    <option value="all">Tất cả chuyên mục</option>
-                                    @foreach($categories as $category)
-                                    <option value="{{$category->id_cat_post}}">{{$category->name_cat_post}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-1">
-                            <div class="dropdown bootstrap-select show-tick">
-                                <button class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
+                                <button class="btn btn-primary"><i class="fa fa-search"></i> Tìm kiếm</button>
                             </div>
                         </div>
                     </div>
@@ -78,7 +40,7 @@
             <div class="col-md-6">
                 <div class="card-body">
                     <!-- <button class="btn btn-info" onclick="window.location = '/san-pham/danh-sach-san-pham-da-xoa';">Xóa nhiều bài viết</button>
-                    
+
                     <button class="btn btn-success">Success</button>
                     <button class="btn btn-warning">Warning</button>
                     <button class="btn btn-danger">Danger</button> -->
@@ -107,19 +69,19 @@
                                 <tbody>
                                     @foreach ($categories as $category)
                                     <tr>
-                                        <!-- <td><center><input type="checkbox" name="checkbox{{ $category->id_cat }}" ></center></td> -->
-                                        <td>{{ $category->name_cat }}</td>
-                                        <td class="text-center">{{ $category->url_cat }}</td>
-                                        @if ($category->enable_cat == 1)
+                                        <!-- <td><center><input type="checkbox" name="checkbox{{ $category->id_cat_product }}" ></center></td> -->
+                                        <td>{{ $category->name_cat_product }}</td>
+                                        <td class="text-center">{{ $category->url_cat_product }}</td>
+                                        @if ($category->enable_cat_product == 1)
                                         <td class="text-center">Hoạt động</td>
                                         @else
                                         <td class="text-center">Không hoạt động</td>
                                         @endif
                                         <td class="td-actions">
-                                            <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" onclick="window.location = '{{ route('category-update', $category->id_cat) }}'">
+                                            <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" onclick="window.location = '{{ route('category-update', $category->id_cat_product) }}'">
                                                 <i class="material-icons">edit</i>
                                             </button>
-                                            <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" onclick="window.location = '/fastfood/category-delete/' + {{ $category->id_cat }}">
+                                            <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" onclick="window.location = '/bookstore/category-delete/' + {{ $category->id_cat_product }}">
                                                 <i class="material-icons">close</i>
                                                 <div class="ripple-container"></div>
                                             </button>

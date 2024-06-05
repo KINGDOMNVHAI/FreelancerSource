@@ -10,7 +10,7 @@ class CategoryProduct extends Model
 
     // Khai báo primary key
     // Trong Laravel có categories::find() nghĩa là tìm theo primary key
-    protected $primaryKey = 'id_cat';
+    protected $primaryKey = 'id_cat_product';
 
     // Bỏ updated_at
     public $timestamps = false;

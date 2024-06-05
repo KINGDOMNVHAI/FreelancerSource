@@ -98,11 +98,14 @@ class ProductService extends ServiceProvider
     {
         // idCat là một mảng nên dùng IN (1,2,3,4,5)
         $query = Products::join('category_product', 'products.id_cat_product', '=', 'category_product.id_cat_product')
+            ->join('authors', 'products.id_author', '=', 'authors.id_author')
             ->select('products.*',
                 'category_product.id_cat_product',
                 'category_product.name_cat_product',
                 'category_product.url_cat_product',
                 'category_product.enable_cat_product',
+                'authors.id_author',
+                'authors.name_author',
             )
             ->where('products.enable_product', ENABLE)
             ->where('category_product.enable_cat_product', ENABLE)
