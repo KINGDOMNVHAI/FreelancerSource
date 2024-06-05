@@ -16,12 +16,14 @@ class CategoryService extends ServiceProvider
 
     }
 
-    public function listCategory($enable)
+    public function listCategory($paginate, $enable)
     {
-        if ($enable == null) {
-            $enable = true;
+        $query = CategoryProduct::where('enable_cat_product', '=', $enable);
+
+        if ($paginate == true) {
+            return $query->paginate(LIMIT_12);
         }
-        return CategoryProduct::where('enable_cat_product', $enable)->get();
+        return $query->get();
     }
 
     public function listCategoryHaveCountProduct()
@@ -102,20 +104,22 @@ class CategoryService extends ServiceProvider
         if ($idUpdate == null || $idUpdate == 0)
         {
             $query = CategoryProduct::create([
-                'name_cat_product'       => $datas['name_cat'],
-                'url_cat_product'        => $datas['url_cat'],
+                'name_cat_product'      => $datas['name_cat'],
+                'url_cat_product'       => $datas['url_cat'],
+                'id_parent'             => $datas['id_parent'],
                 // 'thumbnail_cat'  => $fileName, // Lấy tên file
-                'enable_cat_product'     => $datas['enable']
+                'enable_cat_product'    => $datas['enable']
             ]);
         }
         else
         {
             $query = CategoryProduct::where('id_cat_product', $idUpdate)
             ->update([
-                'name_cat_product'       => $datas['name_cat'],
-                'url_cat_product'        => $datas['url_cat'],
+                'name_cat_product'      => $datas['name_cat'],
+                'url_cat_product'       => $datas['url_cat'],
+                'id_parent'             => $datas['id_parent'],
                 // 'thumbnail_cat'  => $fileName,
-                'enable_cat_product'     => $datas['enable']
+                'enable_cat_product'    => $datas['enable']
             ]);
         }
 

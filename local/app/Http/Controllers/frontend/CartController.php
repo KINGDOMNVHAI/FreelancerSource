@@ -51,7 +51,7 @@ class CartController extends Controller
         $productService = new ProductService;
 
         $listProductRandom = $productService->getProductRandom(LIMIT_6);
-        $listCategories = $categoryService->listCategory(true);
+        $listCategories = $categoryService->listCategory(false, true);
 
         $arrayCart = $request->session()->get('arrayCart');
         $total = $cartService->getTotal($request, $arrayCart);
@@ -114,7 +114,7 @@ class CartController extends Controller
         $bookingService = new BookingService;
         $categoryService = new CategoryService;
 
-        $listCategories = $categoryService->listCategory(true);
+        $listCategories = $categoryService->listCategory(false, true);
 
         $infoBooking = $bookingService->getBooking($request->session()->get('idBooking'));
         $listProduct = $bookingService->getBookingDetail($request->session()->get('idBooking'));

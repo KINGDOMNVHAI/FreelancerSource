@@ -25,7 +25,7 @@ class ProductController extends Controller
             $categoryService = new CategoryService;
             $productService = new ProductService;
 
-            $listCategories = $categoryService->listCategory(true);
+            $listCategories = $categoryService->listCategory(false, true);
             $listCategoriesCount = $categoryService->listCategoryHaveCountProduct();
 
             $arrIdCat[] = $request->idCat;
@@ -62,7 +62,7 @@ class ProductController extends Controller
             $model = Products::find($id);
 
             // Show all category, except selected category
-            $listcat = $categoryService->listCategory(true);
+            $listcat = $categoryService->listCategory(false, true);
 
             // If model is null, this is new post. Create new object
             if ($model == null)

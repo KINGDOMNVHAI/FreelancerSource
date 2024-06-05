@@ -23,7 +23,7 @@ class CategoryController extends Controller
         $categoryService = new CategoryService;
         $productService = new ProductService;
 
-        $listCategories = $categoryService->listCategory(true);
+        $listCategories = $categoryService->listCategory(false, true);
         $listCategoriesCount = $categoryService->listCategoryHaveCountProduct();
         $detailCategory = $categoryService->getCategory($urlCat);
 
@@ -58,7 +58,7 @@ class CategoryController extends Controller
 
         $title = 'Tìm kiếm' . config('type.main');
 
-        $listCategories = $categoryService->listCategory(true);
+        $listCategories = $categoryService->listCategory(false, true);
         $listCategoriesCount = $categoryService->listCategoryHaveCountProduct();
 
         $price = $request->price;

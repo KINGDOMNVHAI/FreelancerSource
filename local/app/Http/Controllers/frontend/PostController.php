@@ -25,7 +25,7 @@ class PostController extends Controller
 
         $title = 'Bài viết' . config('type.main');
 
-        $listCategories = $categoryService->listCategory(true);
+        $listCategories = $categoryService->listCategory(false, true);
 
         $listPost = $postService->getListPost(config('limit.6'), false);
         $listRandomPost = $postService->getListRandomPost(config('limit.6'), false);
@@ -49,7 +49,7 @@ class PostController extends Controller
         $categoryService = new CategoryService;
         $postService = new PostService;
 
-        $listCategories = $categoryService->listCategory(true);
+        $listCategories = $categoryService->listCategory(false, true);
 
         $post = $postService->detail($urlPost);
         $listPost = $postService->getListRandomPost(config('limit.6'), true);

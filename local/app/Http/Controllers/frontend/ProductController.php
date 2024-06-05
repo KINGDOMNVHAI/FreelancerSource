@@ -23,7 +23,7 @@ class ProductController extends Controller
         $categoryService = new CategoryService;
         $productService = new ProductService;
 
-        $listCategories = $categoryService->listCategory(true);
+        $listCategories = $categoryService->listCategory(false, true);
         // $productNewest = $productService->getListNewestPost(NEWEST_HOME_POSTS, null, true, $this->language);
         // $productUpdate = $productService->getListUpdatedPost(UPDATED_HOME_POSTS, null, $this->language);
         // $productRandom = $productService->getListRandomPost(RECENT_HOME_POSTS, $this->language);
@@ -57,7 +57,7 @@ class ProductController extends Controller
         // Get title from parent class
         $title = $productInfo['name_product'] . $this->title;
 
-        $listCategories = $categoryService->listCategory(true);
+        $listCategories = $categoryService->listCategory(false, true);
 
         $arrayCart = $request->session()->get('arrayCart');
         $total = $cartService->getTotal($request, $arrayCart);

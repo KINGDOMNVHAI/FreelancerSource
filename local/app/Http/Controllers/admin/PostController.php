@@ -35,7 +35,7 @@ class PostController extends Controller
 
             $viewPost = $postService->getListPostJoinCategoryPaginate($params);
 
-            $viewCategory = $listCategory->listCategory(true);
+            $viewCategory = $listCategory->listCategory(false, true);
 
             //Str::limit('The quick brown fox jumps over the lazy dog', 20, ' (...)');
             //https://laravel.com/docs/8.x/helpers#method-str-limit
@@ -61,7 +61,7 @@ class PostController extends Controller
             $model = posts::find($id);
 
             // Show all category, except selected category
-            $listcat = $categoryService->listCategory(true);
+            $listcat = $categoryService->listCategory(false, true);
 
             // If model is null, this is new post. Create new object
             if ($model == null)

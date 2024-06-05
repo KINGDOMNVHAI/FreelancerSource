@@ -24,8 +24,8 @@ class CategoryController extends Controller
                 'enable' => ENABLE,
             ];
 
-            $listCategory = new CategoryService;
-            $viewCategory = $listCategory->searchCategory($filter);
+            $categoryService = new CategoryService;
+            $viewCategory = $categoryService->searchCategory($filter);
 
             //Str::limit('The quick brown fox jumps over the lazy dog', 20, ' (...)');
             //https://laravel.com/docs/8.x/helpers#method-str-limit
@@ -72,7 +72,11 @@ class CategoryController extends Controller
         if (Auth::check())
         {
             $model = new CategoryProduct;
-            return view('admin.pages.category-insert', compact('model'));
+            $listcat = $categoryService->listCategory(false, true);
+            return view('admin.pages.category-insert', [
+                'model'   => $model,
+                'listcat' => $listcat
+            ]);
         }
         else {
             return redirect()->route('login');
@@ -85,7 +89,11 @@ class CategoryController extends Controller
         if (Auth::check())
         {
             $model = CategoryProduct::find($idCat);
-            return view('admin.pages.category-insert', compact('model'));
+            $listcat = $categoryService->listCategory(false, true);
+            return view('admin.pages.category-insert', [
+                'model'   => $model,
+                'listcat' => $listcat
+            ]);
         }
         else {
             return redirect()->route('login');

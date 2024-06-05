@@ -42,7 +42,7 @@ class HomeController extends Controller
 
         $title = "Hiệu sách";
 
-        $listCategories = $categoryService->listCategory(true);
+        $listCategories = $categoryService->listCategory(false, true);
         $listCategoriesCount = $categoryService->listCategoryHaveCountProduct();
 
         $listProduct = $productService->getProductPopular();
@@ -70,7 +70,7 @@ class HomeController extends Controller
 
         $title = "Liên hệ " . config('type.main');
 
-        $listCategories = $categoryService->listCategory(true);
+        $listCategories = $categoryService->listCategory(false, true);
 
         $arrayCart = $request->session()->get('arrayCart');
         $total = $cartService->getTotal($request, $arrayCart);

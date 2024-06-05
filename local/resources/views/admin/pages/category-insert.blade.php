@@ -21,16 +21,16 @@
 
         <div class="row">
             <div class="col-md-12">
-                @if ($model->id_cat != null)
-                <form action="{{ route('category-insert-update', $model->id_cat) }}" method="post" enctype="multipart/form-data">
+                @if ($model->id_cat_product != null)
+                <form action="{{ route('category-insert-update', $model->id_cat_product) }}" method="post" enctype="multipart/form-data">
                 @else
                 <form action="{{ route('category-insert-update', 0) }}" method="post" enctype="multipart/form-data">
                 @endif
-                
+
                 {{ csrf_field() }}
 
-                @if ($model->id_cat != null)
-                <input type="hidden" name="id_cat" class="form-control" value="{{ $model->id_cat }}">
+                @if ($model->id_cat_product != null)
+                <input type="hidden" name="id_cat" class="form-control" value="{{ $model->id_cat_product }}">
                 @else
                 <input type="hidden" name="id_cat" class="form-control" value="0">
                 @endif
@@ -46,7 +46,7 @@
                             <label class="col-md-1 col-form-label">Tên chuyên mục</label>
                             <div class="col-md-10">
                                 <div class="form-group has-default">
-                                    <input type="text" name="name_cat" class="form-control" placeholder="Tên chuyên mục" value="{{ $model->name_cat }}" required>
+                                    <input type="text" name="name_cat" class="form-control" placeholder="Tên chuyên mục" value="{{ $model->name_cat_product }}" required>
                                 </div>
                             </div>
                         </div>
@@ -54,21 +54,34 @@
                             <label class="col-md-1 col-form-label">URL</label>
                             <div class="col-md-10">
                                 <div class="form-group has-default">
-                                    <input type="text" name="url_cat" class="form-control" placeholder="duong-dan" value="{{ $model->url_cat }}" required>
+                                    <input type="text" name="url_cat" class="form-control" placeholder="duong-dan" value="{{ $model->url_cat_product }}" required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
+                            <label class="col-md-1 col-form-label">Chuyên mục cha</label>
+                            <div class="col-md-10">
+                                <div class="form-group has-default">
+                                    <select class="selectpicker" name="id_parent" data-style="select-with-transition" data-size="7" tabindex="-98">
+                                        @foreach ($listcat as $cat)
+                                        <option value="{{ $cat->id_cat_product }}" <?php echo ($cat->id_cat_product == $model->id_parent) ? 'selected' : '' ?>>{{ $cat->name_cat_product }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
                             <label class="col-md-1 col-form-label">Tình trạng (Enable)</label>
                             <div class="col-md-10 form-check" style="margin:20px 0 0 20px;">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="enable" value="0" <?= ($model->enable_cat == 0) ? 'checked' : '' ?>> Ẩn
+                                    <input class="form-check-input" type="radio" name="enable" value="0" <?= ($model->enable_cat_product == 0) ? 'checked' : '' ?>> Ẩn
                                     <span class="circle">
                                         <span class="check"></span>
                                     </span>
                                 </label>
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="enable" value="1" <?= ($model->enable_cat == 1) ? 'checked' : '' ?>> Hiện
+                                    <input class="form-check-input" type="radio" name="enable" value="1" <?= ($model->enable_cat_product == 1) ? 'checked' : '' ?>> Hiện
                                     <span class="circle">
                                         <span class="check"></span>
                                     </span>
