@@ -29,6 +29,7 @@ class CartService extends ServiceProvider
     public function setProductToCart(Request $request, $product, $quantity)
     {
         $total = 0;
+        $totalQuantity = 0;
         if ($product->id_product != null || $product->id_product > 0)
         {
             $idProduct = $product->id_product;
@@ -47,6 +48,7 @@ class CartService extends ServiceProvider
                 array_push($arrayCart, $cart);
                 $request->session()->put('arrayCart', $arrayCart);
                 $total = $product->price_product * $quantity;
+                $totalQuantity = $totalQuantity + $quantity;
             } else {
                 $sessionCart = $request->session()->get('arrayCart');
                 $key = 0;
@@ -69,6 +71,7 @@ class CartService extends ServiceProvider
                         $sessionCart[$key] = $editCart;
                         $exist = true;
                         $total = $total + $session['price_product'] * $quantity;
+                        $totalQuantity = $totalQuantity + $quantity;
                     }
                     $key++;
                 }
@@ -78,6 +81,7 @@ class CartService extends ServiceProvider
                 }
                 $request->session()->put('arrayCart', $sessionCart);
                 $request->session()->put('total', $total);
+                $request->session()->put('totalQuantity', $totalQuantity);
             }
         }
     }

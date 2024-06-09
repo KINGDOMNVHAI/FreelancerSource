@@ -360,6 +360,64 @@ class ProductsTableSeeder extends Seeder
 
         $i++;
         Products::create([
+            'name_product' => 'One Punch Man tập 1',
+            'url_product' => 'one-punch-man-tap-1',
+            'info_product' => 'One Punch Man tập 1',
+            'present_product' => '<p></p>
+',
+            'content_product' => '
+',
+            'thumbnail_product' => 'one-punch-man-tap-1-thumbnail.jpg',
+            'img_product_1' => 'one-punch-man-tap-1-1.jpg',
+            'id_cat_product' => CATEGORY_MANGA,
+            'enable_product' => 1,
+            'price_product' => 70000,
+            'id_author' => 1,
+            'id_dis' => 2,
+            'unit_product' => 'Quyển',
+            'popular' => 1,
+        ]);
+
+        Discount::create([
+            'id_product' => $i,
+            'price_discount' => 0,
+            'type_discount' => '%',
+            'start_date' => '2022-07-18',
+            'end_date' => null,
+            'enable_discount' => 0,
+        ]);
+
+        $i++;
+        Products::create([
+            'name_product' => 'One Punch Man tập 2',
+            'url_product' => 'one-punch-man-tap-2',
+            'info_product' => 'One Punch Man tập 2',
+            'present_product' => '<p></p>
+',
+            'content_product' => '
+',
+            'thumbnail_product' => 'one-punch-man-tap-2-thumbnail.jpg',
+            'img_product_1' => 'one-punch-man-tap-2-1.jpg',
+            'id_cat_product' => CATEGORY_MANGA,
+            'enable_product' => 1,
+            'price_product' => 70000,
+            'id_author' => 1,
+            'id_dis' => 2,
+            'unit_product' => 'Quyển',
+            'popular' => 0,
+        ]);
+
+        Discount::create([
+            'id_product' => $i,
+            'price_discount' => 0,
+            'type_discount' => '%',
+            'start_date' => '2022-07-18',
+            'end_date' => null,
+            'enable_discount' => 0,
+        ]);
+
+        $i++;
+        Products::create([
             'name_product' => 'Giấy Paper One A4 ĐL 70gsm',
             'url_product' => 'paper-one-a4-dl-70gsm',
             'info_product' => 'Giấy Paper One A4 ĐL 70gsm',

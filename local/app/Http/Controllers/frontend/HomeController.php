@@ -51,6 +51,7 @@ class HomeController extends Controller
 
         $arrayCart = $request->session()->get('arrayCart');
         $total = $cartService->getTotal($request, $arrayCart);
+        $totalQuantity = $request->session()->get('totalQuantity');
 
         return view('main.pages.home', [
             'title' => $title,
@@ -60,6 +61,7 @@ class HomeController extends Controller
             'listProduct' => $listProduct,
             'arrayCart' => $arrayCart,
             'total' => $total,
+            'totalQuantity' => $totalQuantity,
         ]);
     }
 
@@ -74,12 +76,14 @@ class HomeController extends Controller
 
         $arrayCart = $request->session()->get('arrayCart');
         $total = $cartService->getTotal($request, $arrayCart);
+        $totalQuantity = $request->session()->get('totalQuantity');
 
         return view('main.pages.contact', [
             'title' => $title,
             'listCategories' => $listCategories,
             'arrayCart' => $arrayCart,
             'total' => $total,
+            'totalQuantity' => $totalQuantity,
         ]);
     }
 }

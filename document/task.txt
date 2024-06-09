@@ -1,0 +1,15 @@
+Link
+Thêm chức năng
+Sửa giao diện
+
+
+Giao diện giỏ hàng (thêm sửa xóa số lượng)
+Trang "sản phẩm" hiển thị tất cả sản phẩm.
+
+Tạo thông tin cá nhân cho user ngoài giao diện
+
+user đăng nhập -> không vào được trang admin
+
+trang chủ là trang hiện all sản phẩm
+
+

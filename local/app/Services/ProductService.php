@@ -63,7 +63,7 @@ class ProductService extends ServiceProvider
     {
         return Products::where('enable_product', ENABLE)
             ->where('popular', 1)
-            ->limit(LIMIT_12)
+            ->limit(LIMIT_24)
             ->get();
     }
 

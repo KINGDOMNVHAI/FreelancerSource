@@ -55,6 +55,7 @@ class CartController extends Controller
 
         $arrayCart = $request->session()->get('arrayCart');
         $total = $cartService->getTotal($request, $arrayCart);
+        $totalQuantity = $request->session()->get('totalQuantity');
 
         return view('main.pages.cart-checkout', [
             'title' => $title,
@@ -62,6 +63,7 @@ class CartController extends Controller
             'listProductRandom' => $listProductRandom,
             'arrayCart' => $arrayCart,
             'total' => $total,
+            'totalQuantity' => $totalQuantity,
         ]);
     }
 

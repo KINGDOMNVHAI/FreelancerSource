@@ -28,6 +28,48 @@
 <div class="container-fluid pt-5">
     <div class="row px-xl-5">
         <div class="col-lg-8">
+
+            <table class="table table-bordered text-center mb-4">
+                <thead class="bg-secondary text-dark">
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Tổng giá</th>
+                        <th>Xóa</th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    @foreach($arrayCart as $cart)
+                    <tr>
+                        <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;">{{$cart['name_product']}}</td>
+                        <td class="align-middle">{{$cart['price_product']}} VND</td>
+                        <td class="align-middle">
+                            <div class="input-group quantity mx-auto" style="width: 100px;">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-sm btn-primary btn-minus">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                                <input type="text" name="proQuantity[{!! $cart['id_product'] !!}]" class="form-control form-control-sm bg-secondary text-center" value="{{$cart['quantity']}}">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-sm btn-primary btn-plus">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle"></td>
+                        <td class="align-middle">
+                            <div class="btn btn-sm btn-primary">
+                                <i class="fa fa-times" onclick="removeProductCart({{$cart['id_product']}}, {{$cart['quantity']}})"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
             <div class="mb-4">
                 <h4 class="font-weight-semi-bold mb-4">Địa chỉ thanh toán (Billing Address)</h4>
                 <div class="row">
@@ -53,16 +95,14 @@
         <div class="col-lg-4">
             <div class="card border-secondary mb-5">
                 <div class="card-header bg-secondary border-0">
-                    <h4 class="font-weight-semi-bold m-0">Order Total</h4>
+                    <h4 class="font-weight-semi-bold m-0">Tổng đơn hàng</h4>
                 </div>
                 <div class="card-body">
                     <h5 class="font-weight-medium mb-3">Sản phẩm</h5>
-                    @foreach($arrayCart as $cart)
-                    <div class="d-flex justify-content-between">
-                        <p>{{$cart['name_product']}}<br> x {{$cart['quantity']}}</p>
-                        <p>{{$cart['price_product']}} VND</p>
-                    </div>
-                    @endforeach
+                    <!-- <div class="d-flex justify-content-between">
+                        <p></p>
+                        <p></p>
+                    </div> -->
                     <hr class="mt-0">
                     <div class="d-flex justify-content-between mb-3 pt-1">
                         <h6 class="font-weight-medium">Tổng giá tiền sản phẩm</h6>
@@ -148,5 +188,17 @@
 <!-- Products End -->
 
 @endif
+
+<script>
+function removeProductCart(idProduct, quantity) {
+    console.log(quantity)
+    console.log(proQuantity[quantity])
+
+    // let quantity = Number(document.getElementById('quantity').value);
+    // window.open("/bookstore/cart-add/" + id + "/" + quantity);
+}
+
+
+</script>
 
 @endsection

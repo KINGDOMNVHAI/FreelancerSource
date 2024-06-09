@@ -31,6 +31,7 @@ define('SHIPPING_PRICE_TEXT', '10.000');
 define('LIMIT_6', 6);
 define('LIMIT_8', 8);
 define('LIMIT_12', 12);
+define('LIMIT_24', 24);
 
 // === URL ===
 
@@ -89,6 +90,7 @@ return [
         '6' => 6,
         '12' => 12,
         '20' => 20,
+        '24' => 24,
         '30' => 30,
         '36' => 36,
         '40' => 40,
