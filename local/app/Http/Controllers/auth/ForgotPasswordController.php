@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Services\Mail\ForgotPasswordEmail;
 use App\Mail\InforUserEmail;
+use App\Services\CartService;
+use App\Services\CategoryService;
 use App\Services\UserService;
 use DB;
 use File;
@@ -36,11 +38,22 @@ class ForgotPasswordController extends Controller
         $this->middleware('guest');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $cartService = new CartService;
+        $categoryService = new CategoryService;
+
         $title = "Forgot Password " . config('title.forgot-password');
+
+        $arrayCart = $request->session()->get('arrayCart');
+        $total = $cartService->getTotal($request, $arrayCart);
+        $totalQuantity = $request->session()->get('totalQuantity');
+
         return view('main.pages.forgot-password', [
-            'title' => $title,
+            'title'         => $title,
+            'arrayCart'     => $arrayCart,
+            'total'         => $total,
+            'totalQuantity' => $totalQuantity,
         ]);
     }
 

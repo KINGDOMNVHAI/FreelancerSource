@@ -79,11 +79,11 @@ class HomeController extends Controller
         $totalQuantity = $request->session()->get('totalQuantity');
 
         return view('main.pages.contact', [
-            'title' => $title,
+            'title'          => $title,
             'listCategories' => $listCategories,
-            'arrayCart' => $arrayCart,
-            'total' => $total,
-            'totalQuantity' => $totalQuantity,
+            'arrayCart'      => $arrayCart,
+            'total'          => $total,
+            'totalQuantity'  => $totalQuantity,
         ]);
     }
 }

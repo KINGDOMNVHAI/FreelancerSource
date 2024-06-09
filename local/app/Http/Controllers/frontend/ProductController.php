@@ -30,6 +30,7 @@ class ProductController extends Controller
 
         $arrayCart = $request->session()->get('arrayCart');
         $total = $cartService->getTotal($request, $arrayCart);
+        $totalQuantity = $request->session()->get('totalQuantity');
 
         return view('main.pages.category', [
             'title'          => $title ,
@@ -37,6 +38,7 @@ class ProductController extends Controller
             'listCategories' => $listCategories,
             'arrayCart'      => $arrayCart,
             'total'          => $total,
+            'totalQuantity'  => $totalQuantity,
         ]);
     }
 
@@ -61,6 +63,7 @@ class ProductController extends Controller
 
         $arrayCart = $request->session()->get('arrayCart');
         $total = $cartService->getTotal($request, $arrayCart);
+        $totalQuantity = $request->session()->get('totalQuantity');
 
         return view('main.pages.product', [
             'title' => $title,
@@ -71,6 +74,7 @@ class ProductController extends Controller
             'ogDescriptionProduct' => $productInfo->info_product,
             'arrayCart' => $arrayCart,
             'total' => $total,
+            'totalQuantity' => $totalQuantity,
         ]);
     }
 }

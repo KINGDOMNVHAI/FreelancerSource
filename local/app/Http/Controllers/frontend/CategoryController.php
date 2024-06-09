@@ -37,6 +37,7 @@ class CategoryController extends Controller
 
         $arrayCart = $request->session()->get('arrayCart');
         $total = $cartService->getTotal($request, $arrayCart);
+        $totalQuantity = $request->session()->get('totalQuantity');
 
         return view('main.pages.category', [
             'title' => $title,
@@ -47,6 +48,7 @@ class CategoryController extends Controller
             'notFound' => $notFound,
             'arrayCart' => $arrayCart,
             'total' => $total,
+            'totalQuantity' => $totalQuantity,
         ]);
     }
 
@@ -98,6 +100,7 @@ class CategoryController extends Controller
 
         $arrayCart = $request->session()->get('arrayCart');
         $total = $cartService->getTotal($request, $arrayCart);
+        $totalQuantity = $request->session()->get('totalQuantity');
 
         return view('main.pages.category-search', [
             'title' => $title,
@@ -110,6 +113,7 @@ class CategoryController extends Controller
             'notFound' => $notFound,
             'arrayCart' => $arrayCart,
             'total' => $total,
+            'totalQuantity' => $totalQuantity,
         ]);
     }
 }

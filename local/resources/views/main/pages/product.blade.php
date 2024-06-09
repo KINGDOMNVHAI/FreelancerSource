@@ -33,18 +33,18 @@
                         <img class="w-70 h-70" src="{{asset('upload/images/thumbnail/products/' . $product->thumbnail_product)}}" alt="{{$product->name_product}}">
                     </div>
                     @if($product->img_product_1 != null)
-                    <div class="carousel-item active">
-                        <img class="w-100 h-100" src="{{asset('upload/images/products/' . $product->img_product_1)}}" alt="{{$product->name_product}}" width="100%">
+                    <div class="carousel-item">
+                        <img class="w-100 h-100" src="{{asset('upload/images/products/' . $product->img_product_1)}}" alt="{{$product->name_product}}">
                     </div>
                     @endif
                     @if($product->img_product_2 != null)
-                    <div class="carousel-item active">
-                        <img class="w-100 h-100" src="{{asset('upload/images/products/' . $product->img_product_2)}}" alt="{{$product->name_product}}" width="100%">
+                    <div class="carousel-item">
+                        <img class="w-100 h-100" src="{{asset('upload/images/products/' . $product->img_product_2)}}" alt="{{$product->name_product}}">
                     </div>
                     @endif
                     @if($product->img_product_3 != null)
-                    <div class="carousel-item active">
-                        <img class="w-100 h-100" src="{{asset('upload/images/products/' . $product->img_product_3)}}" alt="{{$product->name_product}}" width="100%">
+                    <div class="carousel-item">
+                        <img class="w-100 h-100" src="{{asset('upload/images/products/' . $product->img_product_3)}}" alt="{{$product->name_product}}">
                     </div>
                     @endif
                 </div>
@@ -85,7 +85,9 @@
                         </button>
                     </div>
                 </div>
-                <button class="btn btn-primary px-3" onclick="addCart({{$product->id_product}})"><i class="fa fa-shopping-cart mr-1"></i> Thêm vào giỏ hàng</button>
+                <button class="btn btn-primary px-3" onclick="addCart({{$product->id_product}})">
+                    <i class="fa fa-shopping-cart mr-1"></i> Thêm vào giỏ hàng
+                </button>
             </div>
         </div>
     </div>
@@ -179,7 +181,9 @@
                     </div>
                 </div>
                 <div class="card-footer d-flex justify-content-between bg-light border">
-                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Chi tiết</a>
+                    <a href="{{route('detail-product', $product->url_product)}}" class="btn btn-sm text-dark p-0">
+                        <i class="fas fa-eye text-primary mr-1"></i>Chi tiết
+                    </a>
                     <!-- <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Giỏ hàng</a> -->
                 </div>
             </div>

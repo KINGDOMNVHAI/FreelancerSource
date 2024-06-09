@@ -43,6 +43,30 @@ class CartController extends Controller
         return redirect()->route('cart-checkout');
     }
 
+    public function removeItem(Request $request, $idProduct)
+    {
+        $cartService = new CartService;
+        $productService = new ProductService;
+
+        $newArrayCart = [];
+        $arrayCart = $request->session()->get('arrayCart');
+        for ($i=0;$i < count($arrayCart);$i++) {
+            if ($arrayCart[$i]["id_product"] != $idProduct) {
+                array_push($newArrayCart, $arrayCart[$i]);
+            }
+        }
+
+        if ($arrayCart == []) {
+            $request->session()->put('arrayCart', []);
+            $request->session()->put('total', 0);
+            $request->session()->put('totalQuantity', 0);
+        } else {
+            $cartService->calCart($request, $idProduct, $newArrayCart);
+        }
+
+        return redirect()->route('cart-checkout');
+    }
+
     public function checkout(Request $request)
     {
         $title = "Giỏ hàng" . config('type.main');
@@ -129,6 +153,7 @@ class CartController extends Controller
             'listProduct' => $listProduct,
             'arrayCart' => [],
             'total' => 0,
+            'totalQuantity' => 0,
         ]);
     }
 }

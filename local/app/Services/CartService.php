@@ -85,4 +85,39 @@ class CartService extends ServiceProvider
             }
         }
     }
+
+    public function calCart(Request $request, $idProduct, $arrayCart) {
+        $key = 0;
+        $exist = false;
+        $quantity = 0;
+        $total = 0;
+        $totalQuantity = 0;
+
+        if ($arrayCart != []) {
+            // check product exist in cart
+            foreach($arrayCart as $session) {
+                if ($session['id_product'] == $idProduct)
+                {
+                    $quantity = $session['quantity'] + $quantity;
+                    $editCart = [
+                        'id_product' => $session['id_product'],
+                        'name_product' => $session['name_product'],
+                        'url_product' => $session['url_product'],
+                        'thumbnail_product' => $session['thumbnail_product'],
+                        'price_product' => $session['price_product'],
+                        'unit_product' => $session['unit_product'],
+                        'quantity' => $quantity,
+                    ];
+                    $arrayCart[$key] = $editCart;
+                    $exist = true;
+                    $total = $total + $session['price_product'] * $quantity;
+                    $totalQuantity = $totalQuantity + $quantity;
+                }
+                $key++;
+            }
+            $request->session()->put('arrayCart', $arrayCart);
+            $request->session()->put('total', $total);
+            $request->session()->put('totalQuantity', $totalQuantity);
+        }
+    }
 }

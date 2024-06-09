@@ -2,6 +2,8 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
+use App\Services\CartService;
+use App\Services\CategoryService;
 use App\Services\UserService;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -45,13 +47,24 @@ class LoginController extends Controller
         return redirect('/');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         // Nếu gặp lỗi sau khi đăng nhập, gõ /login trên trình duyệt bị chuyển sang trang /home
         // xem file RouteServiceProvider
+        $cartService = new CartService;
+        $categoryService = new CategoryService;
+
         $title = "LOGIN " . config('type.login');
+
+        $arrayCart = $request->session()->get('arrayCart');
+        $total = $cartService->getTotal($request, $arrayCart);
+        $totalQuantity = $request->session()->get('totalQuantity');
+
         return view('main.pages.login', [
-            'title' => $title,
+            'title'         => $title,
+            'arrayCart'     => $arrayCart,
+            'total'         => $total,
+            'totalQuantity' => $totalQuantity,
         ]);
     }
 

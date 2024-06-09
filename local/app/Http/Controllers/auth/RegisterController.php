@@ -1,9 +1,10 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Services\CartService;
+use App\Services\CategoryService;
 use App\Services\UserService;
 use App\Services\Auth\LoginService;
 use Illuminate\Support\Facades\Validator;
@@ -50,10 +51,21 @@ class RegisterController extends Controller
 
     public function index(Request $request)
     {
+        $cartService = new CartService;
+        $categoryService = new CategoryService;
+
         $title = "ĐĂNG KÝ " . config('title.main');
         $request->session()->forget(['message']);
+
+        $arrayCart = $request->session()->get('arrayCart');
+        $total = $cartService->getTotal($request, $arrayCart);
+        $totalQuantity = $request->session()->get('totalQuantity');
+
         return view('main.pages.register', [
-            'title' => $title,
+            'title'         => $title,
+            'arrayCart'     => $arrayCart,
+            'total'         => $total,
+            'totalQuantity' => $totalQuantity,
         ]);
     }
 

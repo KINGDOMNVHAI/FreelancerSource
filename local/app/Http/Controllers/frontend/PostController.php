@@ -32,6 +32,7 @@ class PostController extends Controller
 
         $arrayCart = $request->session()->get('arrayCart');
         $total = $cartService->getTotal($request, $arrayCart);
+        $totalQuantity = $request->session()->get('totalQuantity');
 
         return view('main.pages.blog', [
             'title' => $title ,
@@ -40,6 +41,7 @@ class PostController extends Controller
             'listRandomPost' => $listRandomPost,
             'arrayCart' => $arrayCart,
             'total' => $total,
+            'totalQuantity' => $totalQuantity,
         ]);
     }
 
@@ -58,6 +60,7 @@ class PostController extends Controller
 
         $arrayCart = $request->session()->get('arrayCart');
         $total = $cartService->getTotal($request, $arrayCart);
+        $totalQuantity = $request->session()->get('totalQuantity');
 
         return view('main.pages.post', [
             'title' => $title ,
@@ -68,6 +71,7 @@ class PostController extends Controller
             'ogDescriptionPost' => $post->present_post,
             'arrayCart' => $arrayCart,
             'total' => $total,
+            'totalQuantity' => $totalQuantity,
         ]);
     }
 }

@@ -62,7 +62,7 @@
                         <td class="align-middle"></td>
                         <td class="align-middle">
                             <div class="btn btn-sm btn-primary">
-                                <i class="fa fa-times" onclick="removeProductCart({{$cart['id_product']}}, {{$cart['quantity']}})"></i>
+                                <i class="fa fa-times" onclick="window.location = '{{ route('cart-remove-item', $cart['id_product']) }}'"></i>
                             </div>
                         </td>
                     </tr>
@@ -106,7 +106,7 @@
                     <hr class="mt-0">
                     <div class="d-flex justify-content-between mb-3 pt-1">
                         <h6 class="font-weight-medium">Tổng giá tiền sản phẩm</h6>
-                        <h6 class="font-weight-medium">{{$total}}</h6>
+                        <h6 class="font-weight-medium">{{$total}} VND</h6>
                     </div>
                     <div class="d-flex justify-content-between">
                         <h6 class="font-weight-medium">Tiền ship</h6>
@@ -173,11 +173,14 @@
                 <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                     <h6 class="text-truncate mb-3">{{$product->name_product}}</h6>
                     <div class="d-flex justify-content-center">
-                        <h6>{{$product->price_product}} VND</h6><h6 class="text-muted ml-2"><del>{{$product->price_product}} VND</del></h6>
+                        <h6>{{$product->price_product}} VND</h6>
+                        <!-- <h6 class="text-muted ml-2"><del>{{$product->price_product}} VND</del></h6> -->
                     </div>
                 </div>
                 <div class="card-footer d-flex justify-content-between bg-light border">
-                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Chi tiết</a>
+                    <a href="{{route('detail-product', $product->url_product)}}" class="btn btn-sm text-dark p-0">
+                        <i class="fas fa-eye text-primary mr-1"></i>Chi tiết
+                    </a>
                     <!-- <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Giỏ hàng</a> -->
                 </div>
             </div>
