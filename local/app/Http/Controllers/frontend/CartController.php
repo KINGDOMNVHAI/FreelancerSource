@@ -67,6 +67,25 @@ class CartController extends Controller
         return redirect()->route('cart-checkout');
     }
 
+    public function changeQtyCart(Request $request, $idProduct, $quantity)
+    {
+        $cartService = new CartService;
+        $productService = new ProductService;
+
+        $arrayCart = $request->session()->get('arrayCart');
+        for ($i=0;$i < count($arrayCart);$i++) {
+            if ($arrayCart[$i]["id_product"] == $idProduct && $arrayCart[$i]["quantity"] != $quantity) {
+                $arrayCart[$i]["quantity"] = $quantity;
+            }
+        }
+
+        $total = $cartService->getTotal($request, $arrayCart);
+        $totalQuantity = $request->session()->get('totalQuantity');
+        $request->session()->put('arrayCart', $arrayCart);
+
+        return redirect()->route('cart-checkout');
+    }
+
     public function checkout(Request $request)
     {
         $title = "Giỏ hàng" . config('type.main');

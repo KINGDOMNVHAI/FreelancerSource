@@ -21,6 +21,8 @@ Route::get('/cart-add/{idProduct}/{quantity}', 'frontend\CartController@add')->n
 
 Route::get('/cart-remove-item/{idProduct}', 'frontend\CartController@removeItem')->name('cart-remove-item');
 
+Route::get('/cart-change-qty/{idProduct}/{quantity}', 'frontend\CartController@changeQtyCart')->name('cart-change-qty');
+
 Route::get('/cart-checkout', 'frontend\CartController@checkout')->name('cart-checkout');
 
 Route::post('/cart-payment', 'frontend\CartController@payment')->name('cart-payment');

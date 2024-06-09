@@ -47,13 +47,13 @@
                         <td class="align-middle">
                             <div class="input-group quantity mx-auto" style="width: 100px;">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-sm btn-primary btn-minus">
+                                    <button class="btn btn-sm btn-primary btn-minus" onclick="changeQtyCart({{$cart['id_product']}}, {{$cart['quantity']}}, 'minus')">
                                         <i class="fa fa-minus"></i>
                                     </button>
                                 </div>
-                                <input type="text" name="proQuantity[{!! $cart['id_product'] !!}]" class="form-control form-control-sm bg-secondary text-center" value="{{$cart['quantity']}}">
+                                <input type="text" id="proQuantity{!! $cart['id_product'] !!}" name="proQuantity{!! $cart['id_product'] !!}" class="form-control form-control-sm bg-secondary text-center" value="{{$cart['quantity']}}">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-sm btn-primary btn-plus">
+                                    <button class="btn btn-sm btn-primary btn-plus" onclick="changeQtyCart({{$cart['id_product']}}, {{$cart['quantity']}}, 'plus')">
                                         <i class="fa fa-plus"></i>
                                     </button>
                                 </div>
@@ -67,7 +67,7 @@
                         </td>
                     </tr>
                     @endforeach
-                </tbody>
+                </tbody><!-- onclick="changeQtyCart($cart['id_product'], $cart['quantity'])" -->
             </table>
 
             <div class="mb-4">
@@ -193,15 +193,20 @@
 @endif
 
 <script>
-function removeProductCart(idProduct, quantity) {
-    console.log(quantity)
-    console.log(proQuantity[quantity])
-
-    // let quantity = Number(document.getElementById('quantity').value);
-    // window.open("/bookstore/cart-add/" + id + "/" + quantity);
+function changeQtyCart(idProduct, qty, action) {
+    var button = $(this);
+    var oldValue = Number(document.getElementById('proQuantity' + idProduct).value);
+    if (action == 'plus') {
+        var newVal = parseFloat(oldValue) + 1;
+    } else {
+        if (oldValue > 0) {
+            var newVal = parseFloat(oldValue) - 1;
+        } else {
+            newVal = 0;
+        }
+    }
+    window.open("/bookstore/cart-change-qty/" + idProduct + "/" + newVal);
 }
-
-
 </script>
 
 @endsection

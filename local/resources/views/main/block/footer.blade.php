@@ -60,6 +60,3 @@
 <!-- Contact Javascript File -->
 <script src="{{asset('frontend/bookstore/mail/jqBootstrapValidation.min.js')}}"></script>
 <script src="{{asset('frontend/bookstore/js/main.js')}}"></script>
-
-<!-- Template Javascript -->
-<script src="{{asset('frontend/bookstore/js/main.js')}}"></script>
