@@ -59,6 +59,18 @@ class ProductService extends ServiceProvider
         return $result;
     }
 
+    public function getAllProduct($paginate)
+    {
+        $query = Products::where('enable_product', ENABLE)->where('popular', 1);
+
+        if ($paginate == true) {
+            $query = $query->paginate(LIMIT_12);
+        } else {
+            $query = $query->limit(LIMIT_24)->get();
+        }
+        return $query;
+    }
+
     public function getProductPopular()
     {
         return Products::where('enable_product', ENABLE)

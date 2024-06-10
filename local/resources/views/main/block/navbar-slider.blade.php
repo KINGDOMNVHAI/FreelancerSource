@@ -97,6 +97,7 @@
                                 <a href="checkout.html" class="dropdown-item">Checkout</a>
                             </div>
                         </div> -->
+                        <a href="{{route('category-product', 'all')}}" class="nav-item nav-link">Sản phẩm</a>
                         <a href="{{route('contact')}}" class="nav-item nav-link">Liên hệ</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0">

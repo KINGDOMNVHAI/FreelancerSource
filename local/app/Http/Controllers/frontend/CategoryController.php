@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\CategoryProduct;
 use App\Services\CartService;
 use App\Services\CategoryService;
 use App\Services\ProductService;
@@ -25,9 +26,14 @@ class CategoryController extends Controller
 
         $listCategories = $categoryService->listCategory(false, true);
         $listCategoriesCount = $categoryService->listCategoryHaveCountProduct();
-        $detailCategory = $categoryService->getCategory($urlCat);
+        if ($urlCat != 'all') {
+            $detailCategory = $categoryService->getCategory($urlCat);
+            $productCategory = $productService->getProductByCategory($detailCategory->id_cat_product);
+        } else {
+            $detailCategory = new CategoryProduct();
+            $productCategory = $productService->getAllProduct(true);
+        }
 
-        $productCategory = $productService->getProductByCategory($detailCategory->id_cat_product);
         $notFound = true;
         if ($productCategory == null) {
             $notFound = false;

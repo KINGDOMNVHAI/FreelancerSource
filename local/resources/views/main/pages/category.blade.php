@@ -69,11 +69,11 @@
                         </div>
                     </div>
                 @endif
-                <div class="col-12 pb-1">
-                    {!! $productCategory->links('pagination::bootstrap-4') !!}
-                    <!-- <nav aria-label="Page navigation">
-
-                    </nav> -->
+                <div class="col-12 pb-1 text-center">
+                    <div class="mb-4 section-title">
+                        {!! $productCategory->links('pagination::bootstrap-4') !!}
+                    </div>
+                    <!-- <nav aria-label="Page navigation"></nav> -->
                 </div>
             </div>
         </div>

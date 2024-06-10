@@ -23,7 +23,6 @@
 
 <!-- Checkout Start -->
 @if($arrayCart != null)
-<form action="{{route('cart-payment')}}" method="POST">
 {{ csrf_field() }}
 <div class="container-fluid pt-5">
     <div class="row px-xl-5">
@@ -47,13 +46,17 @@
                         <td class="align-middle">
                             <div class="input-group quantity mx-auto" style="width: 100px;">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-sm btn-primary btn-minus" onclick="changeQtyCart({{$cart['id_product']}}, {{$cart['quantity']}}, 'minus')">
+                                    <button class="btn btn-sm btn-primary btn-minus" onclick="changeQtyCart({{$cart['id_product']}}, 'minus')">
                                         <i class="fa fa-minus"></i>
                                     </button>
                                 </div>
-                                <input type="text" id="proQuantity{!! $cart['id_product'] !!}" name="proQuantity{!! $cart['id_product'] !!}" class="form-control form-control-sm bg-secondary text-center" value="{{$cart['quantity']}}">
+                                <input type="text" id="proQuantity{!! $cart['id_product'] !!}"
+                                    name="proQuantity{!! $cart['id_product'] !!}"
+                                    class="form-control form-control-sm bg-secondary text-center"
+                                    onChange="changeQtyCart({{$cart['id_product']}}, 'change')"
+                                    value="{{$cart['quantity']}}">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-sm btn-primary btn-plus" onclick="changeQtyCart({{$cart['id_product']}}, {{$cart['quantity']}}, 'plus')">
+                                    <button class="btn btn-sm btn-primary btn-plus" onclick="changeQtyCart({{$cart['id_product']}}, 'plus')">
                                         <i class="fa fa-plus"></i>
                                     </button>
                                 </div>
@@ -70,6 +73,7 @@
                 </tbody><!-- onclick="changeQtyCart($cart['id_product'], $cart['quantity'])" -->
             </table>
 
+            <form action="{{route('cart-payment')}}" method="POST">
             <div class="mb-4">
                 <h4 class="font-weight-semi-bold mb-4">Địa chỉ thanh toán (Billing Address)</h4>
                 <div class="row">
@@ -142,10 +146,10 @@
                     <button type="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Đặt hàng</button>
                 </div>
             </div>
+            </form>
         </div>
     </div>
 </div>
-</form>
 <!-- Checkout End -->
 
 @else
@@ -168,7 +172,7 @@
         <div class="col-lg-2 col-md-6 col-sm-12 pb-1">
             <div class="card product-item border-0 mb-4">
                 <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                    <img class="img-fluid w-100" src="{{asset('upload/images/products/' . $product->img_product_1)}}" alt="{{$product->name_product}}">
+                    <img class="img-fluid w-100" src="{{asset('upload/images/thumbnail/products/' . $product->thumbnail_product)}}" alt="{{$product->name_product}}">
                 </div>
                 <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                     <h6 class="text-truncate mb-3">{{$product->name_product}}</h6>
@@ -193,19 +197,24 @@
 @endif
 
 <script>
-function changeQtyCart(idProduct, qty, action) {
+function changeQtyCart(idProduct, action) {
     var button = $(this);
     var oldValue = Number(document.getElementById('proQuantity' + idProduct).value);
     if (action == 'plus') {
         var newVal = parseFloat(oldValue) + 1;
-    } else {
+    } else if (action == 'minus') {
         if (oldValue > 0) {
             var newVal = parseFloat(oldValue) - 1;
         } else {
             newVal = 0;
         }
+    } else {
+        newVal = oldValue;
     }
-    window.open("/bookstore/cart-change-qty/" + idProduct + "/" + newVal);
+
+    window.location.href = "http://localhost/bookstore/cart-change-qty/" + idProduct + "/" + newVal;
+
+    // window.open("/bookstore/cart-change-qty/" + idProduct + "/" + newVal);
 }
 </script>
 

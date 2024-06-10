@@ -194,10 +194,10 @@
 <!-- Products End -->
 
 <script>
-    function addCart(id) {
-        let quantity = Number(document.getElementById('quantity').value);
-        window.open("/bookstore/cart-add/" + id + "/" + quantity);
-    }
+function addCart(id) {
+    let quantity = Number(document.getElementById('quantity').value);
+    window.open("/bookstore/cart-add/" + id + "/" + quantity);
+}
 </script>
 
 @endsection

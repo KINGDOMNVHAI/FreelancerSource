@@ -99,7 +99,7 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
-                        <!-- <a href="{{route('home')}}" class="nav-item nav-link">Sản phẩm</a> -->
+                        <a href="{{route('category-product', 'all')}}" class="nav-item nav-link">Sản phẩm</a>
                         <a href="{{route('contact')}}" class="nav-item nav-link">Liên hệ</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0">
