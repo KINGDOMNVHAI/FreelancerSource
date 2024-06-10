@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="align-middle"></td>
+                        <td class="align-middle">{{$cart['price_product'] * $cart['quantity']}} VND</td>
                         <td class="align-middle">
                             <div class="btn btn-sm btn-primary">
                                 <i class="fa fa-times" onclick="window.location = '{{ route('cart-remove-item', $cart['id_product']) }}'"></i>

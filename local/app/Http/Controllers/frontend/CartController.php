@@ -72,16 +72,20 @@ class CartController extends Controller
         $cartService = new CartService;
         $productService = new ProductService;
 
+        $total = 0;
+        $totalQuantity = 0;
         $arrayCart = $request->session()->get('arrayCart');
         for ($i=0;$i < count($arrayCart);$i++) {
             if ($arrayCart[$i]["id_product"] == $idProduct && $arrayCart[$i]["quantity"] != $quantity) {
                 $arrayCart[$i]["quantity"] = $quantity;
             }
+            $total = $arrayCart[$i]["price_product"] * $quantity;
+            $totalQuantity = $totalQuantity + $arrayCart[$i]["quantity"];
         }
 
-        $total = $cartService->getTotal($request, $arrayCart);
-        $totalQuantity = $request->session()->get('totalQuantity');
         $request->session()->put('arrayCart', $arrayCart);
+        $request->session()->put('total', $total);
+        $request->session()->put('totalQuantity', $totalQuantity);
 
         return redirect()->route('cart-checkout');
     }
