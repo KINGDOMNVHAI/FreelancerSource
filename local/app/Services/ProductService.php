@@ -44,24 +44,24 @@ class ProductService extends ServiceProvider
     public function getProductByID($idProduct)
     {
         $result = [];
-        $result = Products::join('discount', 'products.id_product', '=', 'discount.id_product')
-            ->join('category_product', 'products.id_cat_product', '=', 'category_product.id_cat_product')
+        $result = Products::join('category_product', 'products.id_cat_product', '=', 'category_product.id_cat_product')
             ->where('enable_product', true)
             ->where('products.id_product', $idProduct)
             ->first();
 
-        if ($result != null) {
-            $result['result_discount'] = null;
-            if ($result['enable_discount'] == true && $result['type_discount'] == '%') {
-                $result['result_discount'] = $result['price_product'] - ($result['price_product'] * $result['price_discount'] / 100);
-            }
-        }
+        // join('discount', 'products.id_product', '=', 'discount.id_product')
+        // if ($result != null) {
+        //     $result['result_discount'] = null;
+        //     if ($result['enable_discount'] == true && $result['type_discount'] == '%') {
+        //         $result['result_discount'] = $result['price_product'] - ($result['price_product'] * $result['price_discount'] / 100);
+        //     }
+        // }
         return $result;
     }
 
     public function getAllProduct($paginate)
     {
-        $query = Products::where('enable_product', ENABLE)->where('popular', 1);
+        $query = Products::where('enable_product', ENABLE);
 
         if ($paginate == true) {
             $query = $query->paginate(LIMIT_12);

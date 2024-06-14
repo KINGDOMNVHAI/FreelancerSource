@@ -46,9 +46,11 @@
                         <td class="align-middle">
                             <div class="input-group quantity mx-auto" style="width: 100px;">
                                 <div class="input-group-btn">
+                                    @if ($cart['quantity'] > 1)
                                     <button class="btn btn-sm btn-primary btn-minus" onclick="changeQtyCart({{$cart['id_product']}}, 'minus')">
                                         <i class="fa fa-minus"></i>
                                     </button>
+                                    @endif
                                 </div>
                                 <input type="text" id="proQuantity{!! $cart['id_product'] !!}"
                                     name="proQuantity{!! $cart['id_product'] !!}"
@@ -213,7 +215,6 @@ function changeQtyCart(idProduct, action) {
     }
 
     window.location.href = "http://localhost/bookstore/cart-change-qty/" + idProduct + "/" + newVal;
-
     // window.open("/bookstore/cart-change-qty/" + idProduct + "/" + newVal);
 }
 </script>

@@ -130,9 +130,11 @@ class RegisterController extends Controller
             'firstname.min' => 'Tên ít nhất phải có 1 ký tự',
             'lastname.required' => 'Bạn chưa nhập họ',
             'username.required' => 'Bạn chưa nhập tên đăng nhập',
+            'username.min' => 'Tên đăng nhập phải có 5 ký tự',
             'password.required' => 'Bạn chưa nhập mật khẩu',
             'password.min' => 'Mật khẩu phải có 5 ký tự',
             'email.required' => 'Bạn chưa nhập email',
+            'email.unique' => 'Email đã tồn tại',
         ];
 
         $validator = Validator::make($datas, $rules, $messages);

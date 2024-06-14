@@ -121,7 +121,7 @@ class CategoryService extends ServiceProvider
             $query = CategoryProduct::create([
                 'name_cat_product'      => $datas['name_cat'],
                 'url_cat_product'       => $datas['url_cat'],
-                'id_parent'             => $datas['id_parent'],
+                // 'id_parent'             => $datas['id_parent'],
                 // 'thumbnail_cat'  => $fileName, // Lấy tên file
                 'enable_cat_product'    => $datas['enable']
             ]);
@@ -132,7 +132,7 @@ class CategoryService extends ServiceProvider
             ->update([
                 'name_cat_product'      => $datas['name_cat'],
                 'url_cat_product'       => $datas['url_cat'],
-                'id_parent'             => $datas['id_parent'],
+                // 'id_parent'             => $datas['id_parent'],
                 // 'thumbnail_cat'  => $fileName,
                 'enable_cat_product'    => $datas['enable']
             ]);
