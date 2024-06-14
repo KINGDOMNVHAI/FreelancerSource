@@ -59,6 +59,11 @@ class ProductService extends ServiceProvider
         return $result;
     }
 
+    public function countAllProducts()
+    {
+        return Products::where('enable_product', ENABLE)->count();
+    }
+
     public function getAllProduct($paginate)
     {
         $query = Products::where('enable_product', ENABLE);

@@ -68,9 +68,9 @@ class CategoryController extends Controller
 
     public function categoryInsert()
     {
-        $categoryService = new CategoryService;
         if (Auth::check())
         {
+            $categoryService = new CategoryService;
             $model = new CategoryProduct;
             $listcat = $categoryService->listCategory(false, true);
             return view('admin.pages.category-insert', [
@@ -85,9 +85,9 @@ class CategoryController extends Controller
 
     public function categoryUpdate($idCat)
     {
-        $categoryService = new CategoryService;
         if (Auth::check())
         {
+            $categoryService = new CategoryService;
             $model = CategoryProduct::find($idCat);
             $listcat = $categoryService->listCategory(false, true);
             return view('admin.pages.category-insert', [
@@ -102,9 +102,10 @@ class CategoryController extends Controller
 
     public function categoryInsertUpdate(string $idCat = null, Request $request)
     {
-        $categoryService = new CategoryService;
         if (Auth::check())
         {
+            $categoryService = new CategoryService;
+
             $model = CategoryProduct::find($idCat);
 
             // If model is null, this is new post. Create new object
@@ -162,9 +163,10 @@ class CategoryController extends Controller
 
     public function categoryDelete($idCat)
     {
-        $categoryService = new CategoryService();
         if (Auth::check())
         {
+            $categoryService = new CategoryService();
+
             $categoryService->changeEnable($idCat, false);
             $viewCategory = $categoryService->listCategory(true, true);
 
@@ -181,9 +183,10 @@ class CategoryController extends Controller
 
     public function categoryReturn($idCat)
     {
-        $categoryService = new CategoryService();
         if (Auth::check())
         {
+            $categoryService = new CategoryService();
+
             $categoryService->changeEnable($idCat, true);
             $viewCategory = $categoryService->listCategory(true, false);
 

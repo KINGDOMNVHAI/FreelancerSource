@@ -79,6 +79,11 @@ class CategoryService extends ServiceProvider
         return $query->paginate(LIMIT_12);
     }
 
+    public function countAllCategories()
+    {
+        return CategoryProduct::where('enable_cat_product', ENABLE)->count();
+    }
+
     public function getCategory($urlCat)
     {
         return CategoryProduct::where('enable_cat_product', true)

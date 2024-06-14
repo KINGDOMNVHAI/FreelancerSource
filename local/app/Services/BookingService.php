@@ -186,4 +186,8 @@ class BookingService extends ServiceProvider
                 'booking_status' => $status,
             ]);
     }
+    public function countAllBookingByStatus($status)
+    {
+        return Booking::where('booking_status', $status)->count();
+    }
 }
