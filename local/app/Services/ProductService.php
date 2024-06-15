@@ -134,9 +134,9 @@ class ProductService extends ServiceProvider
             $query = $query->where('products.name_product', 'like', $keyword);
         }
 
-        // if ($filter['idCat'][0] != null) {
-        //     $query = $query->whereIn('category_product.id_cat_product', $filter['idCat'][0]);
-        // }
+        if ($filter['idCat'][0] != null) {
+            $query = $query->whereIn('category_product.id_cat_product', $filter['idCat'][0]);
+        }
         if ($filter['minPrice'] != null) {
             $query = $query->where('products.price_product', '>=', $filter['minPrice']);
         }

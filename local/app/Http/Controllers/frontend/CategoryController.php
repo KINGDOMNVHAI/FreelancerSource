@@ -47,6 +47,7 @@ class CategoryController extends Controller
 
         return view('main.pages.category', [
             'title' => $title,
+            'keyword' => null,
             'listCategories' => $listCategories,
             'listCategoriesCount' => $listCategoriesCount,
             'detailCategory' => $detailCategory,
